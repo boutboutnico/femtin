@@ -1,0 +1,57 @@
+///
+/// \file	operator_plus_a_b.hpp
+///	\brief	
+///	\date	4 juin 2015
+/// \author	nboutin
+///
+#ifndef TEST_OPERATOR_PLUS_EGAL_HPP_
+#define TEST_OPERATOR_PLUS_EGAL_HPP_
+
+/// === INCLUDES	================================================================================
+
+#include <assert.h>
+#include "unit/unit_type.hpp"
+
+/// === NAMESPACE	================================================================================
+
+using namespace std;
+using namespace femtin::unit;
+
+namespace femtin
+{
+namespace test
+{
+
+void operator_plus_egal()
+{
+	/// One dimension
+	{
+		meter m1(2);
+		meter m2(3);
+
+		m1 += m2;
+		assert(m1.value() == 5);
+
+		m2 += m1;
+		assert(m2.value() == 8);
+	}
+	/// Two dimension
+	{
+		meter m(2);
+		decimeter dm(30);
+
+		m += dm;
+		assert(m.value() == 5);
+
+		dm += m;
+		assert(dm.value() == 80);
+	}
+
+	cout << "operator_plus_egal:\t Pass" << endl;
+}
+
+}
+}
+
+#endif	/// TEST_OPERATOR_PLUS_EGAL_HPP_
+/// === END OF FILE	================================================================================
