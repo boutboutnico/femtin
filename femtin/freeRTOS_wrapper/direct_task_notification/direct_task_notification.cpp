@@ -22,35 +22,47 @@
 ///
 /// ================================================================================================
 #include "direct_task_notification.hpp"
-using namespace os;
 
-/// === INCLUDES	================================================================================
+/// === Includes	================================================================================
 
 #include "femtin/freeRTOS_wrapper/delay.hpp"
 
+///	===	Namespaces	================================================================================
+
+using namespace femtin::unit;
+
+namespace femtin
+{
+namespace os
+{
+
 /// === Public Definitions	========================================================================
 
-bool os::notifyGive(const TaskHandle_t& handle)
+bool notifyGive(const TaskHandle_t& _handle)
 {
-	return xTaskNotifyGive(handle);
+	return xTaskNotifyGive(_handle);
 }
 
 /// ------------------------------------------------------------------------------------------------
 
-void os::notifyGiveISR(const TaskHandle_t& handle)
+void notifyGiveISR(const TaskHandle_t& _handle)
 {
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-	vTaskNotifyGiveFromISR(handle, &xHigherPriorityTaskWoken);
+	vTaskNotifyGiveFromISR(_handle, &xHigherPriorityTaskWoken);
 	portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
 }
 
 /// ------------------------------------------------------------------------------------------------
 
-uint32_t os::notifyTake(bool is_cleared_on_exit, TickType_t timeout_ms)
+uint32_t notifyTake(bool is_cleared_on_exit, millisecond _timeout)
 {
-	return ulTaskNotifyTake(is_cleared_on_exit, ms_to_ticks(timeout_ms));
+	return ulTaskNotifyTake(is_cleared_on_exit, ms_to_ticks(_timeout));
 }
 
 /// === Private Definitions	========================================================================
+
+///	------------------------------------------------------------------------------------------------
+}/// os
+}/// femtin
 /// END OF FILE	====================================================================================

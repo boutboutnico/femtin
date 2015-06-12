@@ -15,37 +15,35 @@
 
 /// ================================================================================================
 ///
-/// \file	direct_task_notification.hpp
-/// \brief	Cpp wrapper around FreeRTOS Direct to Task Notification
-/// \date	20/03/2015
+/// \file	intensity_unit_type.hpp
+/// \brief
+/// \date	03/06/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef DIRECT_TASK_NOTIFICATION_HPP_
-#define DIRECT_TASK_NOTIFICATION_HPP_
+#ifndef FEMTIN_UNIT_BASE_TYPE_INTENSITY_UNIT_TYPE_HPP_
+#define FEMTIN_UNIT_BASE_TYPE_INTENSITY_UNIT_TYPE_HPP_
 
 /// === Includes	================================================================================
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "femtin/freeRTOS_wrapper/freeRTOS_wrapper.hpp"
-#include "femtin/unit/base_type/time_unit_type.hpp"
+#include "femtin/unit/unit.hpp"
 
-///	===	Namespaces	================================================================================
+/// === Namespaces	================================================================================
 
 namespace femtin
 {
-namespace os
+namespace unit
 {
 
-bool notifyGive(const TaskHandle_t& _handle);
+/// Length	Mass Time Intensity
 
-void notifyGiveISR(const TaskHandle_t& _handle);
-
-uint32_t notifyTake(bool is_cleared_on_exit, unit::millisecond _timeout);
+/// ---	Intensity	--------------------------------------------------------------------------------
+typedef Unit<uint32_t, 0, 0, 0, 1, 0> ampere;
+typedef Unit<uint32_t, 0, 0, 0, 1, -3> milliampere;
 
 /// ------------------------------------------------------------------------------------------------
-}/// os
-}/// femtin
-#endif	/// DIRECT_TASK_NOTIFICATION_HPP_
-/// END OF FILE	====================================================================================
+}///unit
+}    ///femtin
+
+#endif
+/// === END OF FILE	================================================================================

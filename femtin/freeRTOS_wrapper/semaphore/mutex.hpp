@@ -28,10 +28,11 @@
 
 #include "FreeRTOS.h"
 #include "semphr.h"
-#include "femtin/freeRTOS_wrapper/freeRTOS_wrapper.hpp"
+#include "femtin/unit/base_type/time_unit_type.hpp"
 
 /// === Namespaces	================================================================================
-
+namespace femtin
+{
 namespace os
 {
 
@@ -50,7 +51,7 @@ public:
 
 	Mutex();
 
-	virtual bool acquire(TickType_t timeout_ms = TIMEOUT_MAX);
+	virtual bool acquire(unit::millisecond timeout_ms);
 	virtual bool acquireFromISR();
 
 	virtual bool release();
@@ -69,6 +70,6 @@ private:
 
 /// ------------------------------------------------------------------------------------------------
 }/// os
-
+}	/// femtin
 #endif	/// FEMTIN_MUTEX_HPP_
 /// === END OF FILE	================================================================================

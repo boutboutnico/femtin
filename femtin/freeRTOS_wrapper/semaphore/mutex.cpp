@@ -8,7 +8,7 @@
 /// ================================================================================================
 
 #include "mutex.hpp"
-using namespace os;
+using namespace femtin::os;
 
 /// === Includes	================================================================================
 
@@ -16,6 +16,9 @@ using namespace os;
 #include "femtin/freeRTOS_wrapper/delay.hpp"
 
 /// === Namespaces	================================================================================
+
+using namespace femtin::unit;
+
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
 
@@ -27,16 +30,9 @@ Mutex::Mutex()
 
 /// ------------------------------------------------------------------------------------------------
 
-bool Mutex::acquire(TickType_t timeout_ms)
+bool Mutex::acquire(millisecond timeout)
 {
-	if (timeout_ms == TIMEOUT_MAX)
-	{
-		return xSemaphoreTake(handle_, TIMEOUT_MAX);
-	}
-	else
-	{
-		return xSemaphoreTake(handle_, os::ms_to_ticks(timeout_ms));
-	}
+	return xSemaphoreTake(handle_, os::ms_to_ticks(timeout));
 }
 
 /// ------------------------------------------------------------------------------------------------

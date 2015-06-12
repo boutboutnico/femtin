@@ -22,16 +22,20 @@
 ///
 /// ================================================================================================
 #include "software_timer.hpp"
-using namespace os;
+using namespace femtin::os;
 
-/// === INCLUDES	================================================================================
+/// === Includes	================================================================================
 
 #include "femtin/freeRTOS_wrapper/delay.hpp"
+
+///	===	Namespaces	================================================================================
+
+using namespace femtin::unit;
 
 /// === Public Definitions	========================================================================
 
 Software_Timer::Software_Timer(	char const * const name,
-								TickType_t time_ms,
+								millisecond time_ms,
 								bool auto_reload,
 								timer_callback_t callback)
 {
@@ -66,7 +70,7 @@ bool Software_Timer::stop()
 
 /// ------------------------------------------------------------------------------------------------
 
-bool Software_Timer::change(TickType_t time_ms)
+bool Software_Timer::change(millisecond time_ms)
 {
 	return xTimerChangePeriod(handle_, os::ms_to_ticks(time_ms), 0);
 }

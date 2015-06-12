@@ -22,12 +22,16 @@
 ///
 /// ================================================================================================
 #include "semaphore.hpp"
-using namespace os;
+using namespace femtin::os;
 
 /// === Includes	================================================================================
 
 #include <assert.h>
 #include "femtin/freeRTOS_wrapper/delay.hpp"
+
+///	===	Namespaces	================================================================================
+
+using namespace femtin::unit;
 
 /// === Public Definitions	========================================================================
 
@@ -47,16 +51,9 @@ Semaphore::Semaphore(uint8_t n_token)
 
 /// ------------------------------------------------------------------------------------------------
 
-bool Semaphore::take(TickType_t timeout_ms)
+bool Semaphore::take(millisecond timeout)
 {
-	if (timeout_ms == TIMEOUT_MAX)
-	{
-		return xSemaphoreTake(handle_, TIMEOUT_MAX);
-	}
-	else
-	{
-		return xSemaphoreTake(handle_, os::ms_to_ticks(timeout_ms));
-	}
+	return xSemaphoreTake(handle_, os::ms_to_ticks(timeout));
 }
 
 /// ------------------------------------------------------------------------------------------------

@@ -28,10 +28,12 @@
 
 #include "FreeRTOS.h"
 #include "semphr.h"
-#include "femtin/freeRTOS_wrapper/freeRTOS_wrapper.hpp"
+#include "femtin/unit/base_type/time_unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
+namespace femtin
+{
 namespace os
 {
 
@@ -47,7 +49,7 @@ public:
 
 	Semaphore(uint8_t n_token);
 
-	virtual bool take(TickType_t timeout_ms = TIMEOUT_MAX);
+	virtual bool take(unit::millisecond timeout);
 	virtual bool takeFromISR();
 
 	virtual bool give();
@@ -63,7 +65,8 @@ private:
 
 /// === Inline Definitions	========================================================================
 
-}
-
-#endif	/// FEMTIN_SEMAPHORE_HPP_
+///	------------------------------------------------------------------------------------------------
+}/// os
+}/// femtin
+#endif
 /// === END OF FILE	================================================================================

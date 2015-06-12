@@ -28,9 +28,12 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
+#include "../unit/base_type/time_unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
+namespace femtin
+{
 namespace os
 {
 
@@ -41,18 +44,18 @@ namespace os
 /// ------------------------------------------------------------------------------------------------
 
 /// TODO Use constexp ??
-inline TickType_t ms_to_ticks(TickType_t time_ms)
+inline TickType_t ms_to_ticks(unit::millisecond time_ms)
 {
-	return pdMS_TO_TICKS(time_ms);
+	return pdMS_TO_TICKS(time_ms.value());
 //	return time_ms / portTICK_PERIOD_MS;
 }
 
 /// ------------------------------------------------------------------------------------------------
 
 /// TODO Use constexp ??
-inline TickType_t ticks_to_ms(TickType_t ticks)
+inline unit::millisecond ticks_to_ms(TickType_t ticks)
 {
-	return ticks * portTICK_PERIOD_MS;
+	return unit::millisecond(ticks * portTICK_PERIOD_MS);
 }
 
 /// ------------------------------------------------------------------------------------------------
@@ -63,7 +66,8 @@ inline TickType_t ticks_to_ms(TickType_t ticks)
 //
 //	vTaskDelayUntil(&xLastWakeTime, ms_to_ticks(time_ms));
 //}
-
-}
+///	------------------------------------------------------------------------------------------------
+}/// os
+}/// femtin
 #endif	/// FEMTIN_DELAY_HPP_
 /// === END OF FILE	================================================================================
