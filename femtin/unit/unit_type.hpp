@@ -37,27 +37,15 @@ namespace unit
 
 /// Length	Mass Time Intensity
 
-/// ---	Lenght	------------------------------------------------------------------------------------
-typedef Unit<uint32_t, 1, 0, 0, 0, 6> megameter;
-typedef Unit<uint32_t, 1, 0, 0, 0, 3> kilometer;
-typedef Unit<uint32_t, 1, 0, 0, 0, 2> hectometer;
-typedef Unit<uint32_t, 1, 0, 0, 0, 1> decameter;
-typedef Unit<uint32_t, 1, 0, 0, 0, 0> meter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -1> decimeter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -2> centimeter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -3> millimeter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -6> micrometer;
-typedef Unit<uint32_t, 1, 0, 0, 0, -9> nanometer;
+/// --- Dimensionless	----------------------------------------------------------------------------
 
-/// ---	Time	------------------------------------------------------------------------------------
-typedef Unit<uint32_t, 0, 0, 1, 0, 0> second;
-
-/// ---	Intensity	--------------------------------------------------------------------------------
-typedef Unit<uint32_t, 0, 0, 0, 1, 0> ampere;
-typedef Unit<uint32_t, 0, 0, 0, 1, -3> milliampere;
+typedef Unit<uint32_t, 0, 0, 0, 0, 0> dimensionless;
 
 /// ---	Area	------------------------------------------------------------------------------------
 typedef Unit<uint32_t, 2, 0, 0, 0, 0> meter2;
+typedef Unit<uint32_t, 2, 0, 0, 0, -1> decimeter2;
+typedef Unit<uint32_t, 2, 0, 0, 0, -2> centimeter2;
+typedef Unit<uint32_t, 2, 0, 0, 0, -3> millimeter2;
 
 /// ---	Volume	------------------------------------------------------------------------------------
 typedef Unit<uint32_t, 3, 0, 0, 0, 0> meter3;
@@ -66,11 +54,12 @@ typedef Unit<uint32_t, 3, 0, 0, 0, 0> meter3;
 typedef Unit<uint32_t, 1, 0, -1, 0, 0> speed;
 
 /// ---	Voltage = kg.m2.s-3.A-1	--------------------------------------------------------------------
-typedef Unit<uint32_t, 2, 1, -3, -1, 0> voltage;
-typedef Unit<uint32_t, 2, 1, -3, -1, -3> millivoltage;
+typedef Unit<uint32_t, 2, 1, -3, -1, 0> volt;
+typedef Unit<uint32_t, 2, 1, -3, -1, -3> millivolt;
 
 /// --- Ohm = kg.m2.s-3.A-2	------------------------------------------------------------------------
 typedef Unit<uint32_t, 2, 1, -3, -2, 0> ohm;
+typedef Unit<uint32_t, 2, 1, -3, -2, -3> milliohm;
 
 /// --- Watt = kg.m2.s-3	------------------------------------------------------------------------
 typedef Unit<uint32_t, 2, 1, -3, 0, 0> watt;

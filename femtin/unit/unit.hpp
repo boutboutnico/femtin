@@ -26,9 +26,11 @@
 
 /// === Includes	================================================================================
 
-#include <cstdint>
-#include <iostream>
-#include "mpl/mpl_utility.hpp"
+#ifdef _WIN32
+//#include <cstdint>
+//#include <iostream>
+#endif
+#include "femtin/mpl/mpl_utility.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -53,9 +55,11 @@ public:
 	{
 	}
 
+	//* (l + m + t + i)
 	template<int8_t expo2>
 	inline Unit(const Unit<T, l, m, t, i, expo2>& _val)
-			: val_(ScaleConverter<T, expo, expo2>::convert(_val.value()))
+			: val_(ScaleConverter<T, expo * (l + m + t + i), expo2 * (l + m + t + i)>::convert(
+					_val.value()))
 	{
 	}
 
@@ -105,6 +109,7 @@ private:
 
 /// === Non-Members Definitions	====================================================================
 
+#ifdef _WIN32
 template<typename T, int8_t l, int8_t m, int8_t t, int8_t i, int8_t expo>
 std::ostream& operator<<(std::ostream& os, const Unit<T, l, m, t, i, expo>& obj)
 {
@@ -112,7 +117,7 @@ std::ostream& operator<<(std::ostream& os, const Unit<T, l, m, t, i, expo>& obj)
 	os << obj.value();
 	return os;
 }
-
+#endif
 /// ------------------------------------------------------------------------------------------------
 
 template<typename T, int8_t l, int8_t m, int8_t t, int8_t i, int8_t expo>
@@ -156,13 +161,13 @@ const Unit<T, l1 + l2, m1 + m2, t1 + t2, i1 + i2, expo> operator*(	const Unit<T,
 }
 
 /// ------------------------------------------------------------------------------------------------
-
+#if 0
 template<typename T, int8_t l1, int8_t m1, int8_t t1, int8_t i1, int8_t l2, int8_t m2, int8_t t2,
-		int8_t i2, int8_t expo, int8_t expo2>
-const Unit<T, l1 + l2, m1 + m2, t1 + t2, i1 + i2, expo> operator*(	const Unit<T, l1, m1, t1, i1,
-																			expo>& lhs,
-																	const Unit<T, l2, m2, t2, i2,
-																			expo2>& rhs)
+int8_t i2, int8_t expo, int8_t expo2>
+const Unit<T, l1 + l2, m1 + m2, t1 + t2, i1 + i2, expo> operator*( const Unit<T, l1, m1, t1, i1,
+		expo>& lhs,
+		const Unit<T, l2, m2, t2, i2,
+		expo2>& rhs)
 {
 //	typedef Unit<T, l1 + l2, m1 + m2, t1 + t2, i1 + i2, expo> result_t;
 //	return result_t(lhs.value() * ScaleConverter<T, expo, expo2>::convert(rhs.value()));
@@ -170,7 +175,7 @@ const Unit<T, l1 + l2, m1 + m2, t1 + t2, i1 + i2, expo> operator*(	const Unit<T,
 	Unit<T, l2, m2, t2, i2, expo> tmp(rhs);
 	return lhs * tmp;
 }
-
+#endif
 /// ------------------------------------------------------------------------------------------------
 
 template<typename T, int8_t l1, int8_t m1, int8_t t1, int8_t i1, int8_t l2, int8_t m2, int8_t t2,
@@ -180,12 +185,14 @@ const Unit<T, l1 - l2, m1 - m2, t1 - t2, i1 - i2, expo> operator/(	const Unit<T,
 																	const Unit<T, l2, m2, t2, i2,
 																			expo>& rhs)
 {
+	assert(rhs.value() != 0);
+
 	typedef Unit<T, l1 - l2, m1 - m2, t1 - t2, i1 - i2, expo> result_t;
 	return result_t(lhs.value() / rhs.value());
 }
 
 /// ------------------------------------------------------------------------------------------------
 }/// unit
-}	/// femtin
+}    /// femtin
 #endif	/// FEMTIN_UNIT_HPP_
 /// === END OF FILE	================================================================================

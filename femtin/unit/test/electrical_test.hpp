@@ -1,15 +1,17 @@
 ///
-/// \file	operator_plus_a_b.hpp
+/// \file	speed_test.hpp
 ///	\brief	
-///	\date	4 juin 2015
+///	\date	05/06/2015
 /// \author	nboutin
 ///
-#ifndef TEST_OPERATOR_PLUS_EGAL_HPP_
-#define TEST_OPERATOR_PLUS_EGAL_HPP_
+#ifndef TEST_ELECTRICAL_TEST_HPP_
+#define TEST_ELECTRICAL_TEST_HPP_
 
 /// === Includes	================================================================================
 
 #include <assert.h>
+#include "femtin/unit/base_type/time_unit_type.hpp"
+#include "femtin/unit/base_type/intensity_unit_type.hpp"
 #include "femtin/unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
@@ -22,32 +24,35 @@ namespace femtin
 namespace test
 {
 
-void operator_plus_egal()
+void electrical_test()
 {
-	/// One dimension
 	{
-		meter m1(2);
-		meter m2(3);
+		/// U = R.I
+		volt v(230);
+		ohm r(100);
 
-		m1 += m2;
-		assert(m1.value() == 5);
+		ampere i = v / r;
 
-		m2 += m1;
-		assert(m2.value() == 8);
+		assert(i.value() == 2);
 	}
-	/// Two dimension
 	{
-		meter m(2);
-		decimeter dm(30);
+//		millivolt mv(5000);
+//		ohm r(4700);
+//
+//		cout << milliohm(r).value() << endl;
+//
+//		milliampere mi = mv / milliohm(r);
+//		assert(mi.value() == 1);
+	}
+	{
+		volt v(5);
+		ampere i(12);
 
-		m += dm;
-		assert(m.value() == 5);
-
-		dm += m;
-		assert(dm.value() == 80);
+		watt p = v * i;
+		assert(p.value() == 60);
 	}
 
-	cout << "operator_plus_egal:\t Pass" << endl;
+	cout << "electrical test:\t Pass" << endl;
 }
 /// ------------------------------------------------------------------------------------------------
 }/// test

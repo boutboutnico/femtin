@@ -1,15 +1,16 @@
 ///
-/// \file	operator_plus_a_b.hpp
+/// \file	speed_test.hpp
 ///	\brief	
-///	\date	4 juin 2015
+///	\date	05/06/2015
 /// \author	nboutin
 ///
-#ifndef TEST_OPERATOR_PLUS_EGAL_HPP_
-#define TEST_OPERATOR_PLUS_EGAL_HPP_
+#ifndef TEST_SPEED_TEST_HPP_
+#define TEST_SPEED_TEST_HPP_
 
 /// === Includes	================================================================================
 
 #include <assert.h>
+#include "femtin/unit/base_type/time_unit_type.hpp"
 #include "femtin/unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
@@ -22,32 +23,27 @@ namespace femtin
 namespace test
 {
 
-void operator_plus_egal()
+void speed_test()
 {
-	/// One dimension
 	{
-		meter m1(2);
-		meter m2(3);
+		meter m(100);
+		second s(10);
 
-		m1 += m2;
-		assert(m1.value() == 5);
-
-		m2 += m1;
-		assert(m2.value() == 8);
+		speed sp = m / s;
+		assert(sp.value() == 10);
 	}
-	/// Two dimension
 	{
-		meter m(2);
-		decimeter dm(30);
+		millimeter mm (100000);
+		second s(10);
 
-		m += dm;
-		assert(m.value() == 5);
+		speed sp = mm / millisecond(s);
+		speed sp2 = meter(mm) / s;
 
-		dm += m;
-		assert(dm.value() == 80);
+		assert(sp.value() == 10);
+		assert(sp2.value() == 10);
 	}
 
-	cout << "operator_plus_egal:\t Pass" << endl;
+	cout << "speed test:\t\t Pass" << endl;
 }
 /// ------------------------------------------------------------------------------------------------
 }/// test

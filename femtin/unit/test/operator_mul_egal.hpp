@@ -4,13 +4,12 @@
 ///	\date	4 juin 2015
 /// \author	nboutin
 ///
-#ifndef TEST_OPERATOR_PLUS_EGAL_HPP_
-#define TEST_OPERATOR_PLUS_EGAL_HPP_
+#ifndef TEST_OPERATOR_MUL_EGAL_HPP_
+#define TEST_OPERATOR_MUL_EGAL_HPP_
 
 /// === Includes	================================================================================
 
 #include <assert.h>
-#include "femtin/unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -21,33 +20,24 @@ namespace femtin
 {
 namespace test
 {
+/// a@b 	(a).operator@ (b) 	operator@ (a, b)
 
-void operator_plus_egal()
+void operator_mul_egal()
 {
-	/// One dimension
 	{
 		meter m1(2);
-		meter m2(3);
 
-		m1 += m2;
-		assert(m1.value() == 5);
-
-		m2 += m1;
-		assert(m2.value() == 8);
+		m1 *= 3;
+		assert(m1.value() == 6);
 	}
-	/// Two dimension
 	{
-		meter m(2);
-		decimeter dm(30);
+		meter2 m2(3);
 
-		m += dm;
-		assert(m.value() == 5);
-
-		dm += m;
-		assert(dm.value() == 80);
+		m2 *= 4;
+		assert(m2.value() == 12);
 	}
 
-	cout << "operator_plus_egal:\t Pass" << endl;
+	cout << "operator_mul_egal:\t Pass" << endl;
 }
 /// ------------------------------------------------------------------------------------------------
 }/// test

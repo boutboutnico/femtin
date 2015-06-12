@@ -21,38 +21,41 @@
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef SOFTWARE_TIMER_HPP_
-#define SOFTWARE_TIMER_HPP_
+#ifndef FEMTIN_FREERTOS_WRAPPER_SOFTWARE_TIMER_HPP_
+#define FEMTIN_FREERTOS_WRAPPER_SOFTWARE_TIMER_HPP_
 
-/// === INCLUDES	================================================================================
+/// === Includes	================================================================================
 
 #include "FreeRTOS.h"
 #include "timers.h"
+#include "femtin/unit/base_type/time_unit_type.hpp"
 
-/// NAMESPACES	====================================================================================
+///	=== Namespaces	================================================================================
 
+namespace femtin
+{
 namespace os
 {
 
-/// === CLASS	====================================================================================
+/// === Class Declarations	========================================================================
 
 class Software_Timer
 {
 public:
-	/// Public Typedef	============================================================================
+	///	===	Public Typedef	========================================================================
 
 	typedef void (*timer_callback_t)(TimerHandle_t pxTimer);
 
-	/// Public Declarations	========================================================================
+	///	===	Public Declarations	====================================================================
 
 	Software_Timer(	char const * const name,
-					TickType_t time_ms,
+					unit::millisecond time_ms,
 					bool auto_reload,
 					timer_callback_t callback);
 
 	bool start();
 	bool stop();
-	bool change(TickType_t time_ms);
+	bool change(unit::millisecond time_ms);
 	bool reset();
 
 	inline bool active() const;
@@ -63,7 +66,8 @@ private:
 	TimerHandle_t handle_;
 };
 
-}
-
-#endif	/// SOFTWARE_TIMER_HPP_
-/// END OF FILE	====================================================================================
+/// ------------------------------------------------------------------------------------------------
+}/// os
+}    /// femtin
+#endif
+///	===	END OF FILE	================================================================================

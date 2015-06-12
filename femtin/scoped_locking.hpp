@@ -42,10 +42,11 @@ public:
 	/// === Public Declarations	====================================================================
 
 	/// \brief	Store a reference to the lock and acquire it.
-	Guard(Lock& _lock)
+	Guard(Lock& _lock, unit::millisecond _timeout)
 			: lock_(_lock)
 	{
-		is_acquired_ = lock_.acquire();
+		/// TODO handle timeout error
+		is_acquired_ = lock_.acquire(_timeout);
 	}
 
 	/// \brief	Release the lock when the guard goes out of scope
