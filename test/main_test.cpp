@@ -15,6 +15,7 @@ using namespace std;
 #include "buffer/buffer_all_tests.hpp"
 #include "mpl/mpl_all_tests.hpp"
 #include "ring_buffer/ring_buffer_all_tests.hpp"
+#include "unit/unit_all_tests.hpp"
 
 ///	===	Namespaces	================================================================================
 
@@ -31,6 +32,8 @@ int main()
 	mpl::mpl_all();
 
 	ring_buffer::ring_buffer_all();
+
+	unit::unit_all();
 
 	cout << "\n=== End Tests	===" << endl;
 }

@@ -10,8 +10,8 @@
 /// === Includes	================================================================================
 
 #include <assert.h>
-#include "femtin/unit/base_type/length_unit_type.hpp"
-#include "femtin/unit/unit_type.hpp"
+#include "unit/base_type/length_unit_type.hpp"
+#include "unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -21,6 +21,8 @@ using namespace femtin::unit;
 namespace femtin
 {
 namespace test
+{
+namespace unit
 {
 /// ------------------------------------------------------------------------------------------------
 
@@ -65,10 +67,11 @@ void copy_constructor()
 		assert(m2.value() == 1);
 	}
 
-	cout << "copy_constructor:\t Pass" << endl;
+	cout << __func__ << endl;
 }
 
 /// ------------------------------------------------------------------------------------------------
+}
 }/// test
 }    /// femtin
 #endif

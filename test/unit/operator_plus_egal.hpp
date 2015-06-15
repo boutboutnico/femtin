@@ -10,7 +10,7 @@
 /// === Includes	================================================================================
 
 #include <assert.h>
-#include "femtin/unit/unit_type.hpp"
+#include "unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -20,6 +20,8 @@ using namespace femtin::unit;
 namespace femtin
 {
 namespace test
+{
+namespace unit
 {
 
 void operator_plus_egal()
@@ -47,9 +49,10 @@ void operator_plus_egal()
 		assert(dm.value() == 80);
 	}
 
-	cout << "operator_plus_egal:\t Pass" << endl;
+	cout << __func__ << endl;
 }
 /// ------------------------------------------------------------------------------------------------
+}
 }/// test
 }    /// femtin
 #endif

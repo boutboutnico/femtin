@@ -21,38 +21,40 @@
 /// \author	nboutin
 ///
 /// ================================================================================================
-/// === Includes	================================================================================
-#include <iostream>
-#include <assert.h>
+#ifndef FEMTIN_TEST_UNIT_TESTS_HPP_
+#define FEMTIN_TEST_UNIT_ALL_TESTS_HPP_
 
-#include "femtin/mpl/test/mpl.hpp"
-#include "femtin/unit/test/copy_constructor.hpp"
-#include "femtin/unit/test/operator_plus_egal.hpp"
-#include "femtin/unit/test/operator_plus_a_b.hpp"
-#include "femtin/unit/test/operator_mul_egal.hpp"
-#include "femtin/unit/test/operator_mul_a_b.hpp"
-#include "femtin/unit/test/operator_div_egal.hpp"
-#include "femtin/unit/test/operator_div_a_b.hpp"
-#include "femtin/unit/test/speed_test.hpp"
-#include "femtin/unit/test/electrical_test.hpp"
+/// === Includes	================================================================================
+
+#include <iostream>
+
+#include "copy_constructor.hpp"
+#include "operator_plus_egal.hpp"
+#include "operator_plus_a_b.hpp"
+#include "operator_mul_egal.hpp"
+#include "operator_mul_a_b.hpp"
+#include "operator_div_egal.hpp"
+#include "operator_div_a_b.hpp"
+#include "speed_test.hpp"
+#include "electrical_test.hpp"
 
 /// === Namespaces	================================================================================
 
 using namespace std;
-using namespace femtin::test;
+
+namespace femtin
+{
+namespace test
+{
+namespace unit
+{
 
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
 
-int main()
+void unit_all()
 {
-	cout << "=====	Femtin MPL	=====" << endl;
-
-	power();
-	static_if();
-	scale_converter();
-
-	cout << "=====	Femtin Unit	=====" << endl;
+	cout << "\n=== Unit" << endl;
 
 	copy_constructor();
 	operator_plus_egal();
@@ -63,11 +65,11 @@ int main()
 	operator_div_a_b();
 	speed_test();
 	electrical_test();
-
-	cout << "All tests:\t\t Pass" << endl;
-
-	return 0;
 }
 
+}
+}
+}
+#endif
 /// === END OF FILE	================================================================================
 
