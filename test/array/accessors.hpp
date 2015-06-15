@@ -15,19 +15,19 @@
 
 /// ================================================================================================
 ///
-/// \file	array_all_tests.hpp
-/// \brief	Array all tests launcher
+/// \file	accessors.hpp
+/// \brief	Array accessors tests
 /// \date	15/06/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FEMTIN_TEST_ARRAY_ALL_TEST_HPP_
-#define FEMTIN_TEST_ARRAY_ALL_TEST_HPP_
+#ifndef FEMTIN_TEST_ARRAY_ACCESSORS_HPP_
+#define FEMTIN_TEST_ARRAY_ACCESSORS_HPP_
 
 /// === Includes	================================================================================
 
-#include "default_constructor.hpp"
-#include "accessors.hpp"
+#include <iostream>
+#include "../femtin/array.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -40,13 +40,74 @@ namespace array
 
 /// ------------------------------------------------------------------------------------------------
 
-void array_all()
+void accessors()
 {
-	cout << "\n=== Array" << endl;
+	{
+		Array<uint8_t, 10> a;
 
-	default_constructor();
-	accessors();
-	sub_array();
+		for (size_t i = 0; i < 10; i++)
+		{
+			a[i] = i * 2;
+			assert(a[i] == i * 2);
+			assert(*(a.data() + i) == i * 2);
+		}
+	}
+
+	std::cout << __func__ << std::endl;
+}
+
+/// ------------------------------------------------------------------------------------------------
+
+///	Array_ptr<T> subarray(size_t _pos = 0, size_t _count = L)
+void sub_array()
+{
+	{
+		Array<uint8_t, 10> a;
+
+		for (size_t i = 0; i < 10; i++)
+		{
+			a[i] = i;
+		}
+
+		Array_ptr<uint8_t> ap = a.subarray();
+
+		for (size_t i = 0; i < 10; i++)
+		{
+			assert(ap[i] == i);
+		}
+	}
+	{
+		Array<uint8_t, 10> a;
+
+		for (size_t i = 0; i < 10; i++)
+		{
+			a[i] = i;
+		}
+
+		Array_ptr<uint8_t> ap = a.subarray(3);
+
+		for (size_t i = 0; i < 10 - 3; i++)
+		{
+			assert(ap[i] == i + 3);
+		}
+	}
+	{
+		Array<uint8_t, 10> a;
+
+		for (size_t i = 0; i < 10; i++)
+		{
+			a[i] = i;
+		}
+
+		Array_ptr<uint8_t> ap = a.subarray(4, 6);
+
+		for (size_t i = 0; i < 3; i++)
+		{
+			assert(ap[i] == i + 4);
+		}
+	}
+
+	std::cout << __func__ << std::endl;
 }
 
 /// ------------------------------------------------------------------------------------------------

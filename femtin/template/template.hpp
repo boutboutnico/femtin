@@ -55,5 +55,5 @@ private:
 }/// name
 }    /// sub_name
 
-#endif	/// FOLDER_TEMPLATE_HPP_
+#endif
 /// === END OF FILE	================================================================================
