@@ -4,8 +4,8 @@
 ///	\date	4 juin 2015
 /// \author	nboutin
 ///
-#ifndef TEST_MPL_HPP_
-#define TEST_MPL_HPP_
+#ifndef FEMTIN_TEST_MPL_HPP_
+#define FEMTIN_TEST_MPL_HPP_
 
 /// === Includes	================================================================================
 
@@ -34,7 +34,7 @@ void power()
 		assert(pow == val);
 	}
 
-	cout << "power\t\t\tPASS" << endl;
+	cout << __func__ << endl;
 }
 
 /// ------------------------------------------------------------------------------------------------
@@ -48,7 +48,8 @@ void static_if()
 		static const uint32_t value2 = StaticIf<uint32_t, 1 == 0, 100U, 200U>::VALUE;
 		assert(value2 == 200);
 	}
-	cout << "static_if\t\tPASS" << endl;
+
+	cout << __func__ << endl;
 }
 
 /// ------------------------------------------------------------------------------------------------
@@ -67,7 +68,8 @@ void scale_converter()
 		uint32_t val = ScaleConverter<uint32_t, 2, 0>::convert(400);
 		assert(val == 4);
 	}
-	cout << "scale_converter\t\tPASS" << endl;
+
+	cout << __func__ << endl;
 }
 
 /// ------------------------------------------------------------------------------------------------

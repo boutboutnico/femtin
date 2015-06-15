@@ -50,7 +50,7 @@ void operations()
 	assert(b.empty() == false);
 	assert(b.full() == true);
 
-	cout << "operations\t\tPASS" << endl;
+	cout << __func__ << endl;
 }
 
 }

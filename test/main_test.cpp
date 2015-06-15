@@ -14,6 +14,7 @@ using namespace std;
 #include "array/array_all_tests.hpp"
 #include "buffer/buffer_all_tests.hpp"
 #include "mpl/mpl_all_tests.hpp"
+#include "ring_buffer/ring_buffer_all_tests.hpp"
 
 ///	===	Namespaces	================================================================================
 
@@ -29,7 +30,9 @@ int main()
 
 	mpl::mpl_all();
 
-	cout << "=== End Tests	===" << endl;
+	ring_buffer::ring_buffer_all();
+
+	cout << "\n=== End Tests	===" << endl;
 }
 
 /// === END OF FILE	================================================================================

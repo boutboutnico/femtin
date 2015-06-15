@@ -44,7 +44,7 @@ void read()
 	read8 = b.read<uint8_t>();
 	assert(read8 == 0xDE);
 
-	cout << "read\t\t\tPASS" << endl;
+	cout << __func__ << endl;
 }
 
 }

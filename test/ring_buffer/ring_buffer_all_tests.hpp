@@ -21,30 +21,35 @@
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FEMTIN_TEST_MPL_ALL_TESTS_HPP_
-#define FEMTIN_TEST_MPL_ALL_TESTS_HPP_
+#ifndef FEMTIN_TEST_RING_BUFFER_ALL_TESTS_HPP_
+#define FEMTIN_TEST_RING_BUFFER_ALL_TESTS_HPP_
 
 /// === Includes	================================================================================
 
-#include "mpl.hpp"
+#include "constructor.hpp"
+#include "read_write.hpp"
+#include "operations.hpp"
 
 /// === Namespaces	================================================================================
 namespace femtin
 {
 namespace test
 {
-namespace mpl
+namespace ring_buffer
 {
 
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
 
-void mpl_all()
+void ring_buffer_all()
 {
-	cout << "\n=== MPL" << endl;
-	power();
-	static_if();
-	scale_converter();
+	cout << "\n=== Ring Buffer" << endl;
+
+	default_constructor();
+	copy_constructor();
+	operations();
+	read_write();
+	read_write_count_test();
 }
 
 }
@@ -52,3 +57,4 @@ void mpl_all()
 }
 #endif
 /// === END OF FILE	================================================================================
+

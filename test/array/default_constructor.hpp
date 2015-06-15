@@ -27,7 +27,7 @@ void default_constructor()
 
 	assert(a.max_size() == 10);
 
-	cout << "default_constructor\tPASS" << endl;
+	cout << __func__ << endl;
 }
 
 }
