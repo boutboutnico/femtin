@@ -15,44 +15,40 @@
 
 /// ================================================================================================
 ///
-/// \file	length_unit_type.hpp
-/// \brief
-/// \date	03/06/2015
+/// \file	main.cpp
+///	\brief
+///	\date	04/06/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FEMTIN_UNIT_BASE_TYPE_LENGTH_UNIT_TYPE_HPP_
-#define FEMTIN_UNIT_BASE_TYPE_LENGTH_UNIT_TYPE_HPP_
+#ifndef FEMTIN_TEST_MPL_ALL_TESTS_HPP_
+#define FEMTIN_TEST_MPL_ALL_TESTS_HPP_
 
 /// === Includes	================================================================================
 
-#include "../unit.hpp"
+#include "mpl.hpp"
 
 /// === Namespaces	================================================================================
-
 namespace femtin
 {
-namespace unit
+namespace test
+{
+namespace mpl
 {
 
-/// Length	Mass Time Intensity
+/// === Constants	================================================================================
+/// === Public Definitions	========================================================================
 
-/// ---	Lenght	------------------------------------------------------------------------------------
+void mpl_all()
+{
+	cout << "\n=== MPL" << endl;
+	power();
+	static_if();
+	scale_converter();
+}
 
-typedef Unit<uint32_t, 1, 0, 0, 0, 6> megameter;
-typedef Unit<uint32_t, 1, 0, 0, 0, 3> kilometer;
-typedef Unit<uint32_t, 1, 0, 0, 0, 2> hectometer;
-typedef Unit<uint32_t, 1, 0, 0, 0, 1> decameter;
-typedef Unit<uint32_t, 1, 0, 0, 0, 0> meter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -1> decimeter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -2> centimeter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -3> millimeter;
-typedef Unit<uint32_t, 1, 0, 0, 0, -6> micrometer;
-typedef Unit<uint32_t, 1, 0, 0, 0, -9> nanometer;
-
-/// ------------------------------------------------------------------------------------------------
-}///unit
-}    ///femtin
-
+}
+}
+}
 #endif
 /// === END OF FILE	================================================================================

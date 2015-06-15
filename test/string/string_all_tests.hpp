@@ -21,22 +21,35 @@
 /// \author	nboutin
 ///
 /// ================================================================================================
+#ifndef FEMTIN_TEST_STRING_ALL_TESTS_HPP_
+#define FEMTIN_TEST_STRING_ALL_TESTS_HPP_
+
 /// === Includes	================================================================================
+
 #include <iostream>
-#include "string.hpp"
-#include "string_constructor_test.hpp"
+
+#include "constructor.hpp"
+#include "copy_constructor.hpp"
+#include "operations.hpp"
 
 /// === Namespaces	================================================================================
 
 using namespace std;
-using namespace femtin;
-using namespace femtin::string_test;
+
+namespace femtin
+{
+namespace test
+{
+namespace string
+{
 
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
 
-int main()
+void string_all()
 {
+	cout << "\n=== String" << endl;
+
 	/// --- Constructor
 	default_constructor();
 	array_constructor();
@@ -47,12 +60,12 @@ int main()
 //	copy_assignment();
 //	test_constructor();
 
-	cout << "String: Pass" << endl;
 }
 
-/// ------------------------------------------------------------------------------------------------
-/// === Private Definitions	========================================================================
-/// ------------------------------------------------------------------------------------------------
+}
+}
+}
+#endif
 /// === END OF FILE	================================================================================
 
 #if 0

@@ -7,6 +7,7 @@
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<triggers>clean,full,incremental,</triggers>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -25,14 +26,14 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>femtin</name>
+			<name>src/femtin</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/femtin</locationURI>
+			<locationURI>FEMTIN_HOME/femtin</locationURI>
 		</link>
 		<link>
-			<name>test</name>
+			<name>src/test</name>
 			<type>2</type>
-			<locationURI>PARENT-2-PROJECT_LOC/test</locationURI>
+			<locationURI>FEMTIN_HOME/test</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

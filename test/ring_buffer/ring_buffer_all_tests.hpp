@@ -21,53 +21,40 @@
 /// \author	nboutin
 ///
 /// ================================================================================================
-/// === Includes	================================================================================
-#include <iostream>
-#include <assert.h>
+#ifndef FEMTIN_TEST_RING_BUFFER_ALL_TESTS_HPP_
+#define FEMTIN_TEST_RING_BUFFER_ALL_TESTS_HPP_
 
-#include "femtin/mpl/test/mpl.hpp"
-#include "femtin/unit/test/copy_constructor.hpp"
-#include "femtin/unit/test/operator_plus_egal.hpp"
-#include "femtin/unit/test/operator_plus_a_b.hpp"
-#include "femtin/unit/test/operator_mul_egal.hpp"
-#include "femtin/unit/test/operator_mul_a_b.hpp"
-#include "femtin/unit/test/operator_div_egal.hpp"
-#include "femtin/unit/test/operator_div_a_b.hpp"
-#include "femtin/unit/test/speed_test.hpp"
-#include "femtin/unit/test/electrical_test.hpp"
+/// === Includes	================================================================================
+
+#include "constructor.hpp"
+#include "read_write.hpp"
+#include "operations.hpp"
 
 /// === Namespaces	================================================================================
-
-using namespace std;
-using namespace femtin::test;
+namespace femtin
+{
+namespace test
+{
+namespace ring_buffer
+{
 
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
 
-int main()
+void ring_buffer_all()
 {
-	cout << "=====	Femtin MPL	=====" << endl;
+	cout << "\n=== Ring Buffer" << endl;
 
-	power();
-	static_if();
-	scale_converter();
-
-	cout << "=====	Femtin Unit	=====" << endl;
-
+	default_constructor();
 	copy_constructor();
-	operator_plus_egal();
-	operator_plus_a_b();
-	operator_mul_egal();
-	operator_mul_a_b();
-	operator_div_egal();
-	operator_div_a_b();
-	speed_test();
-	electrical_test();
-
-	cout << "All tests:\t\t Pass" << endl;
-
-	return 0;
+	operations();
+	read_write();
+	read_write_count_test();
 }
 
+}
+}
+}
+#endif
 /// === END OF FILE	================================================================================
 

@@ -10,9 +10,9 @@
 /// === Includes	================================================================================
 
 #include <assert.h>
-#include "femtin/unit/base_type/time_unit_type.hpp"
-#include "femtin/unit/base_type/intensity_unit_type.hpp"
-#include "femtin/unit/unit_type.hpp"
+#include "unit/base_type/time_unit_type.hpp"
+#include "unit/base_type/intensity_unit_type.hpp"
+#include "unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -22,6 +22,8 @@ using namespace femtin::unit;
 namespace femtin
 {
 namespace test
+{
+namespace unit
 {
 
 void electrical_test()
@@ -52,9 +54,10 @@ void electrical_test()
 		assert(p.value() == 60);
 	}
 
-	cout << "electrical test:\t Pass" << endl;
+	cout << __func__ << endl;
 }
 /// ------------------------------------------------------------------------------------------------
+}
 }/// test
 }    /// femtin
 #endif

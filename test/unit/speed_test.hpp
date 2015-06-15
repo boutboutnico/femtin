@@ -10,8 +10,8 @@
 /// === Includes	================================================================================
 
 #include <assert.h>
-#include "femtin/unit/base_type/time_unit_type.hpp"
-#include "femtin/unit/unit_type.hpp"
+#include "unit/base_type/time_unit_type.hpp"
+#include "unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -21,6 +21,8 @@ using namespace femtin::unit;
 namespace femtin
 {
 namespace test
+{
+namespace unit
 {
 
 void speed_test()
@@ -43,9 +45,10 @@ void speed_test()
 		assert(sp2.value() == 10);
 	}
 
-	cout << "speed test:\t\t Pass" << endl;
+	cout << __func__ << endl;
 }
 /// ------------------------------------------------------------------------------------------------
+}
 }/// test
 }    /// femtin
 #endif

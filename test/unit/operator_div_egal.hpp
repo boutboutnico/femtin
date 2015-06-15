@@ -20,6 +20,8 @@ namespace femtin
 {
 namespace test
 {
+namespace unit
+{
 /// a@b 	(a).operator@ (b) 	operator@ (a, b)
 
 void operator_div_egal()
@@ -37,9 +39,10 @@ void operator_div_egal()
 		assert(m2.value() == 3);
 	}
 
-	cout << "operator_div_egal:\t Pass" << endl;
+	cout << __func__ << endl;
 }
 /// ------------------------------------------------------------------------------------------------
+}
 }/// test
 }    /// femtin
 #endif
