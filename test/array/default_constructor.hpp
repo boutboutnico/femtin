@@ -12,7 +12,7 @@
 #include <iostream>
 using namespace std;
 
-#include "array.hpp"
+#include "../femtin/array.hpp"
 
 namespace femtin
 {

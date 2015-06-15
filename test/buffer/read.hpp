@@ -12,7 +12,7 @@
 #include <iostream>
 using namespace std;
 
-#include "buffer.hpp"
+#include "../femtin/buffer.hpp"
 
 namespace femtin
 {
