@@ -46,7 +46,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper|test/unit|test/string|test/ring_buffer|test/mpl" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper|test/unit|test/string|test/ring_buffer" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -93,7 +93,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper|test/unit|test/string|test/ring_buffer|test/mpl" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper|test/unit|test/string|test/ring_buffer" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

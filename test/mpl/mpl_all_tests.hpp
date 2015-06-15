@@ -22,52 +22,30 @@
 ///
 /// ================================================================================================
 /// === Includes	================================================================================
-#include <iostream>
-#include <assert.h>
 
-#include "femtin/mpl/test/mpl.hpp"
-#include "femtin/unit/test/copy_constructor.hpp"
-#include "femtin/unit/test/operator_plus_egal.hpp"
-#include "femtin/unit/test/operator_plus_a_b.hpp"
-#include "femtin/unit/test/operator_mul_egal.hpp"
-#include "femtin/unit/test/operator_mul_a_b.hpp"
-#include "femtin/unit/test/operator_div_egal.hpp"
-#include "femtin/unit/test/operator_div_a_b.hpp"
-#include "femtin/unit/test/speed_test.hpp"
-#include "femtin/unit/test/electrical_test.hpp"
+#include "mpl.hpp"
 
 /// === Namespaces	================================================================================
-
-using namespace std;
-using namespace femtin::test;
+namespace femtin
+{
+namespace test
+{
+namespace mpl
+{
 
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
 
-int main()
+void mpl_all()
 {
-	cout << "=====	Femtin MPL	=====" << endl;
-
+	cout <<"\n=== MPL" << endl;
 	power();
 	static_if();
 	scale_converter();
-
-	cout << "=====	Femtin Unit	=====" << endl;
-
-	copy_constructor();
-	operator_plus_egal();
-	operator_plus_a_b();
-	operator_mul_egal();
-	operator_mul_a_b();
-	operator_div_egal();
-	operator_div_a_b();
-	speed_test();
-	electrical_test();
-
-	cout << "All tests:\t\t Pass" << endl;
-
-	return 0;
 }
 
+}
+}
+}
 /// === END OF FILE	================================================================================
 

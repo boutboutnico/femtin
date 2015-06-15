@@ -13,6 +13,7 @@ using namespace std;
 
 #include "array/array_all_tests.hpp"
 #include "buffer/buffer_all_tests.hpp"
+#include "mpl/mpl_all_tests.hpp"
 
 ///	===	Namespaces	================================================================================
 
@@ -22,13 +23,11 @@ int main()
 {
 	cout << "=== Start Tests	===" << endl;
 
-	{
-		array::array_all();
-	}
+	array::array_all();
 
-	{
-		buffer::buffer_all();
-	}
+	buffer::buffer_all();
+
+	mpl::mpl_all();
 
 	cout << "=== End Tests	===" << endl;
 }

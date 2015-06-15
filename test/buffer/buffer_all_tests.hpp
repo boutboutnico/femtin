@@ -22,6 +22,8 @@ namespace buffer
 
 void buffer_all()
 {
+	cout <<"\n=== Buffer" << endl;
+
 	default_constructor();
 	copy_constructor();
 

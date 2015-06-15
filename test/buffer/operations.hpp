@@ -50,7 +50,7 @@ void operations()
 	assert(b.empty() == false);
 	assert(b.full() == true);
 
-	cout << "Buffer\toperations\t\tPASS" << endl;
+	cout << "operations\t\tPASS" << endl;
 }
 
 }

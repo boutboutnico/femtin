@@ -27,7 +27,7 @@ void default_constructor()
 	Buffer<32> b;
 	b.fill(0xAB);
 
-	cout << "Buffer\tdefault_constructor\tPASS" << endl;
+	cout << "default_constructor\tPASS" << endl;
 }
 
 void copy_constructor()
@@ -44,7 +44,7 @@ void copy_constructor()
 	b3.add<uint8_t>(0xFF);
 	assert(b3.full() == true);
 
-	cout << "Buffer\tcopy_constructor\tPASS" << endl;
+	cout << "copy_constructor\tPASS" << endl;
 }
 
 }

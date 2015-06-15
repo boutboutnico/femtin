@@ -23,6 +23,10 @@ local.properties
 # PDT-specific
 .buildpath
 
+### Compilation files
+*.o
+*.d
+
 
 #################
 ## Visual Studio

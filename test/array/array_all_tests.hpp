@@ -20,6 +20,8 @@ namespace array
 
 void array_all()
 {
+	cout << "\n=== Array" << endl;
+
 	default_constructor();
 }
 
