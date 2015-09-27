@@ -10,7 +10,7 @@
 /// === Includes	================================================================================
 
 #include <assert.h>
-#include "femtin/unit/unit_type.hpp"
+#include "unit/unit_type.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -20,6 +20,8 @@ using namespace femtin::unit;
 namespace femtin
 {
 namespace test
+{
+namespace unit
 {
 /// a@b 	(a).operator@ (b) 	operator@ (a, b)
 
@@ -38,7 +40,7 @@ void operator_div_a_b()
 	}
 
 	{
-		meter2 m2 (12);
+		meter2 m2(12);
 		meter m1(3);
 
 		meter m3 = m2 / m1;
@@ -97,10 +99,11 @@ void operator_div_a_b()
 		assert(m3.value() == 567 * 340 / (100*100));
 	}
 #endif
-	cout << "operator_div_a_b:\t Pass" << endl;
+	cout << __func__ << endl;
 }
 /// ------------------------------------------------------------------------------------------------
-}/// test
+}
+}    /// test
 }    /// femtin
 #endif
 /// === END OF FILE	================================================================================

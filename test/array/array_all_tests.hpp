@@ -6,22 +6,27 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include <iostream>
-using namespace std;
+#ifndef FEMTIN_TEST_ARRAY_ALL_TEST_HPP_
+#define FEMTIN_TEST_ARRAY_ALL_TEST_HPP_
 
-#include "array.hpp"
-using namespace femtin;
+#include "default_constructor.hpp"
 
-void test_constructor();
-
-int main()
+namespace femtin
 {
-	test_constructor();
+namespace test
+{
+namespace array
+{
 
-	cout << "String: Pass" << endl;
+void array_all()
+{
+	cout << "\n=== Array" << endl;
+
+	default_constructor();
 }
 
-void test_constructor()
-{
-	Array<uint8_t, 10> a10;
 }
+}
+}
+
+#endif
