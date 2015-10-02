@@ -15,34 +15,53 @@
 
 /// ================================================================================================
 ///
-/// \file	template.hpp
+/// \file	ostream.hpp
 /// \brief
-/// \date	dd/mm/yyyy
+/// \date	02/10/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FOLDER_TEMPLATE_HPP_
-#define FOLDER_TEMPLATE_HPP_
+#ifndef FEMTIN_OSTREAM_HPP_
+#define FEMTIN_OSTREAM_HPP_
 
 /// === Includes	================================================================================
+
+#include <cstddef>
+#include <cstring>
+#include "ios.hpp"
+
 /// === Namespaces	================================================================================
 
-namespace name
+namespace femtin
 {
 
-namespace sub_name
-{
 /// === Forward Declarations	====================================================================
 /// === Enumerations	============================================================================
 /// === Class Declarations	========================================================================
 
-class Template
+class ostream : public ios_base
 {
 public:
-	/// === Public Constants	====================================================================
+	/// === Constants	============================================================================
 	/// === Public Declarations	====================================================================
 
-	Template();
+	void write(char _c);
+	void write(const char* _s);
+//	void write(int8_t _n);
+//	void write(int16_t _n);
+//	void write(int32_t _n);
+//	void write(uint8_t _n);
+//	void write(uint16_t _n);
+//	void write(uint32_t _n);
+//	void write(float _n);
+////	void write(double _n);
+//	void write(bool _b);
+//	void write(fmtflags _f);
+
+protected:
+	///	===	Protected Declarations	================================================================
+
+	virtual void write(const char* _s, size_t _size) = 0;
 
 private:
 	/// === Private Declarations	================================================================
@@ -51,11 +70,27 @@ private:
 
 /// === Inlines Definitions	========================================================================
 
+inline void ostream::write(char _c)
+{
+	write(&_c, 1);
+}
+
+inline void ostream::write(const char* _s)
+{
+	write(_s, strlen(_s));
+}
+
 ///	=== Non-Members Definitions	====================================================================
 
+template<class T>
+inline ostream& operator<<(ostream& _stream, T _arg)
+{
+	_stream.write(_arg);
+	return _stream;
+}
+
 /// ------------------------------------------------------------------------------------------------
-}/// name
-}    /// sub_name
+}/// femtin
 
 #endif
 /// === END OF FILE	================================================================================

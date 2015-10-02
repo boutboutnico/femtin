@@ -44,10 +44,9 @@ namespace os
 /// ------------------------------------------------------------------------------------------------
 
 /// TODO Use constexp ??
-inline TickType_t ms_to_ticks(unit::millisecond time_ms)
+inline TickType_t ms_to_ticks(unit::millisecond _time)
 {
-	return pdMS_TO_TICKS(time_ms.value());
-//	return time_ms / portTICK_PERIOD_MS;
+	return pdMS_TO_TICKS(_time.value());
 }
 
 /// ------------------------------------------------------------------------------------------------
@@ -60,6 +59,13 @@ inline unit::millisecond ticks_to_ms(TickType_t ticks)
 
 /// ------------------------------------------------------------------------------------------------
 
+inline void task_delay(unit::millisecond _time)
+{
+	vTaskDelay(pdMS_TO_TICKS(_time.value()));
+}
+
+/// ------------------------------------------------------------------------------------------------
+
 //inline void delayUntil(TickType_t time_ms)
 //{
 //	TickType_t xLastWakeTime = xTaskGetTickCount();
@@ -68,6 +74,6 @@ inline unit::millisecond ticks_to_ms(TickType_t ticks)
 //}
 ///	------------------------------------------------------------------------------------------------
 }/// os
-}/// femtin
+}    /// femtin
 #endif	/// FEMTIN_DELAY_HPP_
 /// === END OF FILE	================================================================================
