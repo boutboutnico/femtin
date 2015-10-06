@@ -34,7 +34,7 @@ namespace femtin
 
 struct _Setw
 {
-	int _M_n;
+	size_t _M_n;
 };
 
 inline _Setw width(int _w)
