@@ -184,7 +184,7 @@ public:
 protected:
 	///	===	Protected Declarations	================================================================
 
-//	ios_base();
+	ios_base();
 
 	/// === Protected Attributes	================================================================
 
@@ -198,6 +198,12 @@ private:
 };
 
 /// === Inlines Definitions	========================================================================
+
+inline ios_base::ios_base()
+		: flags_(dec | showbase), width_(0), precision_(2)
+{
+
+}
 
 inline ios_base::fmtflags ios_base::flags() const
 {
