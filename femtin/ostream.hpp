@@ -59,11 +59,11 @@ public:
 		return _pf(*this);
 	}
 
-	ostream& operator<<(ios_base& (*_pf)(ios_base&))
-	{
-		_pf(*this);
-		return *this;
-	}
+//	ostream& operator<<(ios_base& (*_pf)(ios_base&))
+//	{
+//		_pf(*this);
+//		return *this;
+//	}
 
 	ostream& operator<<(char _c)
 	{
@@ -85,10 +85,10 @@ public:
 		return iformat(_n);
 	}
 
-	ostream& operator<<(bool _n)
-	{
-		return iformat(_n);
-	}
+//	ostream& operator<<(bool _n)
+//	{
+//		return iformat(_n);
+//	}
 
 	ostream& operator<<(short _n)
 	{
@@ -160,10 +160,13 @@ public:
 		return *this;
 	}
 
+	virtual ostream& endl() = 0;
+
 protected:
 	///	===	Protected Declarations	================================================================
 
 	virtual void write(const char* _s, size_t _size) = 0;
+
 	template<typename T> ostream& iformat(T v);
 
 	///	Enables the compiler to check the format string against the parameters provided throughout
@@ -234,6 +237,11 @@ inline char* ostream::encode_dec(char* fmt, uint32_t n) const
 }
 
 ///	=== Non-Members Definitions	====================================================================
+
+inline ostream& endl(ostream& _stream)
+{
+	return _stream.endl();
+}
 
 /// ------------------------------------------------------------------------------------------------
 }/// femtin
