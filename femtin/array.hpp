@@ -158,6 +158,8 @@ class Array_ptr
 public:
 	/// === Basic Types	============================================================================
 
+	typedef T* iterator;
+	typedef const T* const_iterator;
 	typedef T& reference;
 	typedef const T& const_reference;
 
@@ -166,7 +168,7 @@ public:
 
 	/// \brief	Default constructor
 	Array_ptr()
-			: data_(NULL), size_(0)
+			: array_(NULL), size_(0)
 	{
 	}
 
@@ -175,20 +177,20 @@ public:
 	/// \warning	New code should not use this constructor
 	template<size_t L>
 	Array_ptr(T (&_array)[L])
-			: data_(&_array[0]), size_(L)
+			: array_(&_array[0]), size_(L)
 	{
 	}
 
 	/// \brief	Construct provided for compatibility with code that does not use Array_ptr
 	/// \warning	New code should not use this constructor
 	Array_ptr(T* const _data, const size_t _len)
-			: data_(_data), size_(_len)
+			: array_(_data), size_(_len)
 	{
 	}
 
 	template<size_t L>
 	Array_ptr(Array<T, L>& _array)
-			: data_(_array.begin()), size_(L)
+			: array_(_array.begin()), size_(L)
 	{
 	}
 
@@ -206,20 +208,42 @@ public:
 	inline reference operator[](size_t _pos)
 	{
 		assert(_pos < max_size());
-		return data_[_pos];
+		return array_[_pos];
 	}
 
 	inline const_reference operator[](size_t _pos) const
 	{
 		assert(_pos < max_size());
-		return data_[_pos];
+		return array_[_pos];
+	}
+
+	/// --- Iterators	----------------------------------------------------------------------------
+
+	inline iterator begin()
+	{
+		return array_;
+	}
+
+	inline const_iterator begin() const
+	{
+		return array_;
+	}
+
+	inline iterator end()
+	{
+		return &array_[size_];
+	}
+
+	inline const_iterator end() const
+	{
+		return &array_[size_];
 	}
 
 private:
 	/// === Private Declarations	================================================================
 	/// === Private Attributes	====================================================================
 
-	T* data_;
+	T* array_;
 	size_t size_;
 };
 
