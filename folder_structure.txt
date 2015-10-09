@@ -1,0 +1,34 @@
+project
+	|
+	+-src
+		|
+		+-application
+		|
+		+-external
+			|
+			+-FEMTIN_HOME
+				|
+				+-femtin
+				|
+				+-board
+					|
+					+-stm32f4-discovery
+						|
+						+-bsp
+						|
+						+-peripherals
+						|
+						+-demo
+			|
+			+-FREERTOS_HOME
+		|
+		+-main
+	|
+	+-system
+	|
+	+-include
+	
+	
+	
+ 24921	    204	  78320	 103445	  19415	stm32_dev.elf
+  24921	    204	  78320	 103445	  19415

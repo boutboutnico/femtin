@@ -25,12 +25,15 @@
 using namespace board::led;
 
 /// === Includes	================================================================================
+
+#include "portable/pinout_mapping.hpp"
+
 /// === Static Instantiation	====================================================================
 
-LED board::led::LED_Green(GPIOD, GPIO_PIN_12);
-LED board::led::LED_Orange(GPIOD, GPIO_PIN_13);
-LED board::led::LED_Red(GPIOD, GPIO_PIN_14);
-LED board::led::LED_Blue(GPIOD, GPIO_PIN_15);
+LED board::led::LED_Green(LED_GREEN_GPIO_PORT, LED_GREEN_PIN);
+LED board::led::LED_Orange(LED_ORANGE_GPIO_PORT, LED_ORANGE_PIN);
+LED board::led::LED_Red(LED_RED_GPIO_PORT, LED_RED_PIN);
+LED board::led::LED_Blue(LED_BLUE_GPIO_PORT, LED_BLUE_PIN);
 
 /// === Public Definitions	========================================================================
 

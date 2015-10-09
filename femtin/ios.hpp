@@ -200,7 +200,7 @@ private:
 /// === Inlines Definitions	========================================================================
 
 inline ios_base::ios_base()
-		: flags_(dec | showbase), width_(0), precision_(2)
+		: flags_(dec), width_(0), precision_(2)
 {
 
 }

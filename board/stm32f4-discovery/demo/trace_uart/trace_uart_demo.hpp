@@ -15,47 +15,39 @@
 
 /// ================================================================================================
 ///
-/// \file	iomanip.hpp
+/// \file	trace_uart_demo.hpp
 /// \brief
-/// \date	06/10/2015
+/// \date	08/10/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FEMTIN_IOMANIP_HPP_
-#define FEMTIN_IOMANIP_HPP_
+#ifndef TRACE_UART_TRACE_UART_DEMO_HPP_
+#define TRACE_UART_TRACE_UART_DEMO_HPP_
 
 /// === Includes	================================================================================
-
-#include <cstddef>
-#include "femtin/ostream.hpp"
-
 /// === Namespaces	================================================================================
 
-namespace femtin
+namespace demo
 {
+
+namespace trace_uart
+{
+/// === Forward Declarations	====================================================================
+/// === Enumerations	============================================================================
+///	=== Public Declarations	========================================================================
+
+/**
+ * Must be run in a task context
+ */
+void trace_uart_demo();
 
 /// === Inlines Definitions	========================================================================
 
-struct _Setw
-{
-	size_t _M_n;
-};
-
-inline _Setw width(size_t _w)
-{
-	return
-	{	_w};
-}
-
-inline ostream& operator<<(ostream& _stream, _Setw _w)
-{
-	_stream.width(_w._M_n);
-	return _stream;
-}
+///	=== Non-Members Definitions	====================================================================
 
 /// ------------------------------------------------------------------------------------------------
 }
-/// femtin
+}
 
 #endif
 /// === END OF FILE	================================================================================

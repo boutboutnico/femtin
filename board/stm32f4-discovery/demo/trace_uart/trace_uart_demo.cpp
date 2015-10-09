@@ -15,64 +15,62 @@
 
 /// ================================================================================================
 ///
-/// \file	led_demo.cpp
+/// \file	trace_uart_demo.cpp
 ///	\brief	
 ///	\date	08/10/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#include "led_demo.hpp"
+#include "trace_uart_demo.hpp"
 
 /// === Includes	================================================================================
 
+#include "femtin/iomanip.hpp"
 #include "femtin/freeRTOS_wrapper/delay.hpp"
-#include "bsp/led/led.hpp"
+#include "bsp/trace_uart/trace_uart.hpp"
 
 /// === Namespaces	================================================================================
 
+using namespace femtin;
 using namespace femtin::unit;
 using namespace femtin::os;
-using namespace board::led;
+using namespace board::mcu;
 
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
 
 namespace demo
 {
-namespace led
+namespace trace_uart
 {
 
-void led_demo()
+void trace_uart_demo()
 {
 	/// --- Initialization	------------------------------------------------------------------------
 
-	const millisecond delay { 500 };
+	const millisecond delay { 1000 };
 
 	/// --- Infinite Loop	------------------------------------------------------------------------
 	for (;;)
 	{
-		LED_Green.toggle();
-		LED_Orange.toggle();
-		LED_Red.toggle();
-		LED_Blue.toggle();
-		task_delay(delay);
-
-		LED_Green.toggle();
-		task_delay(delay);
-
-		LED_Orange.toggle();
-		task_delay(delay);
-
-		LED_Red.toggle();
-		task_delay(delay);
-
-		LED_Blue.toggle();
-		task_delay(delay);
-
-		LED_Green.toggle();
-		LED_Orange.toggle();
-		LED_Red.toggle();
-		LED_Blue.toggle();
+		trace << endl << '1' << endl;
+		trace << "ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`" << endl;
+		trace << "abcdefghijklmnopqrstuvwxyz{|}~" << endl;
+		static uint32_t i = 0;
+		trace << "val=" << i++ << endl;
+		trace << 1234 << endl;											///"1234"
+		trace << width(6) << -200 << width(3) << 5 << "%" << endl;    ///"  -200,  5%"
+		trace << ios_base::left << width(6) << 100 << endl << ios_base::right;    ///"100   "
+		trace << 12345678L << endl;		///"12345678"
+		///	trace_printf("%04x\n", 0xA3);			///"00a3"
+		trace << ios_base::hex << width(4) << 0xA3 << endl << ios_base::dec;
+		///	trace_printf("%08LX\n", 0x123ABC);		///"00123ABC"
+		///	trace_printf("%016b\n", 0x550F);		///"0101010100001111"
+		///	trace_printf("%s\n", "String");			///"String"
+		///	trace_printf("%-4s\n", "abc");			///"abc "
+		///	trace_printf("%4s\n", "abc");			///" abc"
+		///	trace_printf("%c\n", 'a');				///"a"
+		///	trace_printf("%f\n", 10.0);            	///<xprintf lacks floating point support>
 		task_delay(delay);
 	}
 }

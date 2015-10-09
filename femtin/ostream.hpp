@@ -115,57 +115,72 @@ public:
 		switch (_f)
 		{
 		case boolalpha:
+			femtin::boolalpha(*this);
 			break;
 		case dec:
 			femtin::dec(*this);
 			break;
 		case fixed:
+			femtin::fixed(*this);
 			break;
 		case hex:
 			femtin::hex(*this);
 			break;
 		case internal:
+			femtin::internal(*this);
 			break;
 		case left:
+			femtin::left(*this);
 			break;
 		case oct:
 			femtin::oct(*this);
 			break;
 		case right:
+			femtin::right(*this);
 			break;
 		case scientific:
+			femtin::scientific(*this);
 			break;
 		case showbase:
+			femtin::showbase(*this);
 			break;
 		case showpoint:
+			femtin::showpoint(*this);
 			break;
 		case showpos:
+			femtin::showpos(*this);
 			break;
 		case skipws:
+			femtin::skipws(*this);
 			break;
 		case unitbuf:
+			femtin::unitbuf(*this);
 			break;
 		case uppercase:
+			femtin::uppercase(*this);
 			break;
 		case adjustfield:
-			break;
 		case basefield:
-			break;
 		case floatfield:
-			break;
 		default:
+			assert(false);
 			break;
 		}
 
 		return *this;
 	}
 
-	virtual ostream& endl() = 0;
+	virtual ostream& endl()
+	{
+		write("\n", 1);
+		return *this;
+	}
 
 protected:
 	///	===	Protected Declarations	================================================================
 
-	virtual void write(const char* _s, size_t _size) = 0;
+	void write(const char* _s, size_t _size);
+	virtual void write(const uint8_t* _buf, size_t _size) =0;
 
 	template<typename T> ostream& iformat(T v);
 
@@ -186,6 +201,12 @@ private:
 };
 
 /// === Members Definitions	========================================================================
+
+///	Centralized cast from char* to uint8_t*
+inline void ostream::write(const char* _s, size_t _size)
+{
+	write(reinterpret_cast<const uint8_t*>(_s), _size);
+}
 
 template<typename T>
 inline const char* printf_typestring(const T)
@@ -215,7 +236,7 @@ PRINTF_TYPESTRING_SPEC (unsigned long long, "llu")
 template<typename T>
 ostream& ostream::iformat(T v)
 {
-	char fmt[16] = { 0 };
+	char fmt[16] = { 0 };    /// TODO Fix me
 	fmtstring(fmt, printf_typestring(v), ustl::numeric_limits<T>::is_integer);
 
 	/// Always set back to zero

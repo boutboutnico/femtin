@@ -15,72 +15,20 @@
 
 /// ================================================================================================
 ///
-/// \file	led_demo.cpp
+/// \file	template.cpp
 ///	\brief	
-///	\date	08/10/2015
+///	\date	dd/mm/yyyy
 /// \author	nboutin
 ///
 /// ================================================================================================
-#include "led_demo.hpp"
+#include "template.hpp"
+using namespace name::sub_name;
 
 /// === Includes	================================================================================
-
-#include "femtin/freeRTOS_wrapper/delay.hpp"
-#include "bsp/led/led.hpp"
-
 /// === Namespaces	================================================================================
-
-using namespace femtin::unit;
-using namespace femtin::os;
-using namespace board::led;
-
 /// === Constants	================================================================================
 /// === Public Definitions	========================================================================
-
-namespace demo
-{
-namespace led
-{
-
-void led_demo()
-{
-	/// --- Initialization	------------------------------------------------------------------------
-
-	const millisecond delay { 500 };
-
-	/// --- Infinite Loop	------------------------------------------------------------------------
-	for (;;)
-	{
-		LED_Green.toggle();
-		LED_Orange.toggle();
-		LED_Red.toggle();
-		LED_Blue.toggle();
-		task_delay(delay);
-
-		LED_Green.toggle();
-		task_delay(delay);
-
-		LED_Orange.toggle();
-		task_delay(delay);
-
-		LED_Red.toggle();
-		task_delay(delay);
-
-		LED_Blue.toggle();
-		task_delay(delay);
-
-		LED_Green.toggle();
-		LED_Orange.toggle();
-		LED_Red.toggle();
-		LED_Blue.toggle();
-		task_delay(delay);
-	}
-}
-
 /// ------------------------------------------------------------------------------------------------
 /// === Private Definitions	========================================================================
 /// ------------------------------------------------------------------------------------------------
-}
-}
-
 /// === END OF FILE	================================================================================

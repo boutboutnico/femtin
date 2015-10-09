@@ -72,6 +72,8 @@ void ostream::fmtstring(char* fmt, const char* _specifier, bool _is_integer) con
 	/// introductory % character
 	*fmt++ = '%';
 
+	if (flags_ & left) *fmt++ = '-';
+
 	if (*_specifier == 'c' || *_specifier == 's')
 	{
 		/// Copy conversion specifier
