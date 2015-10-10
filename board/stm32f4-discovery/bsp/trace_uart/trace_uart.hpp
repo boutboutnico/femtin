@@ -15,48 +15,72 @@
 
 /// ================================================================================================
 ///
-/// \file	template.hpp
+/// \file	trace_uart.hpp
 /// \brief
-/// \date	dd/mm/yyyy
+/// \date	08/10/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FOLDER_TEMPLATE_HPP_
-#define FOLDER_TEMPLATE_HPP_
+#ifndef BSP_TRACE_UART_TRACE_UART_HPP_
+#define BSP_TRACE_UART_TRACE_UART_HPP_
 
 /// === Includes	================================================================================
+
+#include "stm32f4xx_hal.h"
+#include "femtin/ostream.hpp"
+#include "femtin/freeRTOS_wrapper/semaphore/semaphore.hpp"
+#include "femtin/freeRTOS_wrapper/semaphore/mutex.hpp"
+#include "bsp/peripheral_handler.hpp"
+
 /// === Namespaces	================================================================================
 
-namespace name
+namespace board
 {
 
-namespace sub_name
+namespace mcu
 {
 /// === Forward Declarations	====================================================================
-/// === Enumerations	============================================================================
+
+class Trace_UART;
+
+/// === Extern Declarations	========================================================================
+
+extern Trace_UART trace;
+
 /// === Class Declarations	========================================================================
 
-class Template
+class Trace_UART : public PeripheralHandler, public femtin::ostream
 {
 public:
-	/// === Public Constants	====================================================================
 	/// === Public Declarations	====================================================================
 
-	Template();
+	Trace_UART();
+
+	bool initialize(uint32_t _speed);
 
 private:
-	///	=== Private Constants	====================================================================
-	/// === Private Declarations	================================================================
-	/// === Private Attributes	====================================================================
-};
+	/// === Private Constants	====================================================================
 
+	static const size_t BUFFER_SIZE = 128;
+
+	/// === Private Declarations	================================================================
+
+	virtual void write(const uint8_t* _buf, size_t _size);
+
+	virtual void HAL_UART_TxCpltCallback(UART_HandleTypeDef* _huart);
+	virtual void HAL_UART_ErrorCallback(UART_HandleTypeDef* _huart);
+
+	/// === Private Attributes	====================================================================
+
+	femtin::Array<char, BUFFER_SIZE> buffer_;
+	UART_HandleTypeDef UART_handle_;
+	femtin::os::Semaphore SEM_UART;
+	femtin::os::Mutex MUT_trace;
+};
 /// === Inlines Definitions	========================================================================
 
-///	=== Non-Members Definitions	====================================================================
-
 /// ------------------------------------------------------------------------------------------------
-}/// name
-}    /// sub_name
-
+}///mcu
+}    /// board
 #endif
 /// === END OF FILE	================================================================================

@@ -15,48 +15,90 @@
 
 /// ================================================================================================
 ///
-/// \file	template.hpp
+/// \file	joystick.hpp
 /// \brief
-/// \date	dd/mm/yyyy
+/// \date	06/10/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FOLDER_TEMPLATE_HPP_
-#define FOLDER_TEMPLATE_HPP_
+#ifndef DRIVERS_JOYSTICK_THUMB_JOYSTICK_HPP_
+#define DRIVERS_JOYSTICK_THUMB_JOYSTICK_HPP_
 
 /// === Includes	================================================================================
+
+#include <cstddef>
+#include "stm32f4xx_hal.h"
+#include "femtin/array.hpp"
+#include "bsp/peripheral_handler.hpp"
+#include "portable/pinout_mapping.hpp"
+
 /// === Namespaces	================================================================================
 
-namespace name
+namespace peripheral
+{
+namespace joystick_thumb
 {
 
-namespace sub_name
-{
 /// === Forward Declarations	====================================================================
 /// === Enumerations	============================================================================
 /// === Class Declarations	========================================================================
 
-class Template
+class Joystick : public board::mcu::PeripheralHandler
 {
 public:
 	/// === Public Constants	====================================================================
 	/// === Public Declarations	====================================================================
 
-	Template();
+	Joystick();
+
+	bool initialize();
+
+	uint32_t read_vertical() const;
+	uint32_t read_horizontal() const;
+	bool is_push() const;
 
 private:
 	///	=== Private Constants	====================================================================
+
+	static const size_t DMA_BUFFER_SIZE = 64;
+
 	/// === Private Declarations	================================================================
+
+	virtual void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* _ADC_handle);
+
 	/// === Private Attributes	====================================================================
+
+	ADC_HandleTypeDef ADC_handle_;
+	DMA_HandleTypeDef DMA_handle_;
+	femtin::Array<uint32_t, DMA_BUFFER_SIZE> DMA_buffer_;
+
+	uint32_t vertical_ = 0;
+	uint32_t horizontal_ = 0;
 };
 
 /// === Inlines Definitions	========================================================================
 
+inline uint32_t Joystick::read_vertical() const
+{
+	return vertical_;
+}
+
+inline uint32_t Joystick::read_horizontal() const
+{
+	return horizontal_;
+}
+
+inline bool Joystick::is_push() const
+{
+	return !HAL_GPIO_ReadPin(const_cast<GPIO_TypeDef*>(board::JOYSTICK_ADC_GPIO_PORT),
+								board::JOYSTICK_ADC_SELECT_PIN);
+}
+
 ///	=== Non-Members Definitions	====================================================================
 
 /// ------------------------------------------------------------------------------------------------
-}/// name
-}    /// sub_name
+}
+}
 
 #endif
 /// === END OF FILE	================================================================================

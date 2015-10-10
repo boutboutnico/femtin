@@ -15,48 +15,95 @@
 
 /// ================================================================================================
 ///
-/// \file	template.hpp
+/// \file	led.hpp
 /// \brief
-/// \date	dd/mm/yyyy
+/// \date	22/03/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-#ifndef FOLDER_TEMPLATE_HPP_
-#define FOLDER_TEMPLATE_HPP_
+#ifndef BOARD_LED_LED_HPP_
+#define BOARD_LED_LED_HPP_
 
 /// === Includes	================================================================================
+
+#include "stm32f4xx_hal.h"
+
 /// === Namespaces	================================================================================
 
-namespace name
+namespace board
+{
+namespace led
 {
 
-namespace sub_name
-{
 /// === Forward Declarations	====================================================================
-/// === Enumerations	============================================================================
+
+class LED;
+
+/// === Extern Declarations	========================================================================
+
+extern LED LED_Green;
+extern LED LED_Orange;
+extern LED LED_Red;
+extern LED LED_Blue;
+
 /// === Class Declarations	========================================================================
 
-class Template
+class LED
 {
 public:
-	/// === Public Constants	====================================================================
+	/// === Basic Types	============================================================================
+
+	typedef uint16_t pin_type;
+	typedef GPIO_TypeDef* port_type;
+
 	/// === Public Declarations	====================================================================
 
-	Template();
+	LED(port_type _port, pin_type _pin);
+
+	inline void toggle() __attribute__((always_inline));
+
+	inline void on() __attribute__((always_inline));
+
+	inline void off() __attribute__((always_inline));
 
 private:
-	///	=== Private Constants	====================================================================
 	/// === Private Declarations	================================================================
+
+	void initialize();
+
 	/// === Private Attributes	====================================================================
+
+	const pin_type pin_;
+	const port_type port_;
 };
 
-/// === Inlines Definitions	========================================================================
+/// === Inline Definitions	========================================================================
 
-///	=== Non-Members Definitions	====================================================================
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+
+inline void LED::toggle()
+{
+	HAL_GPIO_TogglePin(port_, pin_);
+}
 
 /// ------------------------------------------------------------------------------------------------
-}/// name
-}    /// sub_name
 
+inline void LED::on()
+{
+	HAL_GPIO_WritePin(port_, pin_, GPIO_PinState::GPIO_PIN_SET);
+}
+
+/// ------------------------------------------------------------------------------------------------
+
+inline void LED::off()
+{
+	HAL_GPIO_WritePin(port_, pin_, GPIO_PIN_RESET);
+}
+
+#pragma GCC diagnostic pop
+/// ------------------------------------------------------------------------------------------------
+}/// led
+}    /// board
 #endif
 /// === END OF FILE	================================================================================
