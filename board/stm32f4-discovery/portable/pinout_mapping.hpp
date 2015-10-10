@@ -111,6 +111,38 @@ inline void LCD_I2C_GPIO_CLK_ENABLE()
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 }
 
+/// --- ADC1 - Joystick	----------------------------------------------------------------------------
+
+const mcu::Peripherals_e JOYSTICK_ADC_e = mcu::Peripherals_e::ADC_1;
+extern const ADC_TypeDef* JOYSTICK_ADC;    /// ADC1
+extern const GPIO_TypeDef* JOYSTICK_ADC_GPIO_PORT;    /// GPIOA
+extern const DMA_Stream_TypeDef* JOYSTICK_ADC_DMA;    /// DMA2_Stream4
+const uint16_t JOYSTICK_ADC_VERTICAL_PIN = GPIO_PIN_1;
+const uint16_t JOYSTICK_ADC_HORIZONTAL_PIN = GPIO_PIN_2;
+const uint16_t JOYSTICK_ADC_SELECT_PIN = GPIO_PIN_3;
+const uint32_t JOYSTICK_ADC_VERTICAL_CHANNEL = ADC_CHANNEL_1;
+const uint32_t JOYSTICK_ADC_HORIZONTAL_CHANNEL = ADC_CHANNEL_2;
+const uint32_t JOYSTICK_ADC_DMA_CHANNEL = DMA_CHANNEL_0;
+
+const IRQn_Type JOYSTICK_ADC_DMA_IRQn = DMA2_Stream4_IRQn;
+const uint8_t JOYSTICK_ADC_DMA_IRQn_PRIO = 6;
+const uint8_t JOYSTICK_ADC_DMA_IRQn_SUBPRIO = 4;
+
+inline void JOYSTICK_ADC_GPIO_CLK_ENABLE()
+{
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+}
+
+inline void JOYSTICK_ADC_CLK_ENABLE()
+{
+	__HAL_RCC_ADC1_CLK_ENABLE();
+}
+
+inline void JOYSTICK_ADC_DMA_CLK_ENABLE()
+{
+	__HAL_RCC_DMA2_CLK_ENABLE();
+}
+
 /// --- SPI2 - SD Card	----------------------------------------------------------------------------
 
 //extern const SPI_TypeDef* SDCARD_SPI;

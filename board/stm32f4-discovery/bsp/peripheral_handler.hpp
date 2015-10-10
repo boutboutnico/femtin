@@ -45,6 +45,8 @@ enum class Peripherals_e
 	{
 		UART_3 = 0x00,
 	I2C_1,
+	ADC_1,
+	DMA_2_Stream_4,
 };
 
 /// === Union	====================================================================================
@@ -66,15 +68,21 @@ union Handle_u
 	{
 	}
 
+	Handle_u(ADC_HandleTypeDef* _handle)
+			: adc_(_handle)
+	{
+	}
+
 	/// --- Public Attributes
 	UART_HandleTypeDef* uart_;
 	USART_HandleTypeDef* usart_;
 	I2C_HandleTypeDef* i2c_;
+	ADC_HandleTypeDef* adc_;
 };
 
 /// === Class Declarations	========================================================================
 
-/// TODO : Use derived class for each peripheral
+/// TODO : Use derived class for each peripheral type
 class PeripheralHandler
 {
 public:
@@ -143,6 +151,18 @@ public:
 	virtual void HAL_I2C_ErrorCallback(I2C_HandleTypeDef* _I2C_handle)
 	{
 		(void) _I2C_handle;
+	}
+
+	///	---	ADC Callback	------------------------------------------------------------------------
+
+	virtual void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* _ADC_handle)
+	{
+		(void) _ADC_handle;
+	}
+
+	virtual void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* _ADC_handle)
+	{
+		(void) _ADC_handle;
 	}
 
 private:

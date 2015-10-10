@@ -54,8 +54,10 @@ extern "C"
 
 /// --- UART	------------------------------------------------------------------------------------
 
+/// From vectors_stm32f4xx.c
 void USART2_IRQHandler(void);
 void USART3_IRQHandler(void);
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* _huart);
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef* _huart);
 void HAL_UART_ErrorCallback(UART_HandleTypeDef* _huart);
@@ -66,10 +68,27 @@ void HAL_USART_ErrorCallback(USART_HandleTypeDef* _husart);
 
 /// --- I2C	----------------------------------------------------------------------------------------
 
+/// From vectors_stm32f4xx.c
 void I2C1_EV_IRQHandler(void);
 void I2C1_ER_IRQHandler(void);
+
 void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef* _hi2c);
 void HAL_I2C_ErrorCallback(I2C_HandleTypeDef* _hi2c);
+
+///	---	ADC	----------------------------------------------------------------------------------------
+
+/// From vectors_stm32f4xx.c
+void ADC_IRQHandler(void);
+
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* _hadc);
+//void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* _hadc);
+//void HAL_ADC_LevelOutOfWindowCallback(ADC_HandleTypeDef* _hadc);
+//void HAL_ADC_ErrorCallback(ADC_HandleTypeDef* _hadc);
+
+///	--- DMA	----------------------------------------------------------------------------------------
+
+/// From vectors_stm32f4xx.c
+void DMA2_Stream4_IRQHandler();
 
 
 #ifdef __cplusplus

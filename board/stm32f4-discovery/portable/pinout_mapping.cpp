@@ -50,6 +50,12 @@ GPIO_TypeDef* Trace_UART_TX_GPIO_PORT = GPIOD;
 const I2C_TypeDef* LCD_I2C = I2C1;
 const GPIO_TypeDef* LCD_I2C_GPIO_PORT = GPIOB;
 
+/// --- ADC1 - Joystick	----------------------------------------------------------------------------
+
+const ADC_TypeDef* JOYSTICK_ADC = ADC1;
+const GPIO_TypeDef* JOYSTICK_ADC_GPIO_PORT = GPIOA;
+const DMA_Stream_TypeDef* JOYSTICK_ADC_DMA = DMA2_Stream4;
+
 /// --- SPI2 - SD Card	----------------------------------------------------------------------------
 
 //const SPI_TypeDef* SDCARD_SPI = SPI2;

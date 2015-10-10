@@ -27,7 +27,7 @@ namespace mcu
 
 /// ===
 
-femtin::Array<PeripheralHandler*, 2> peripherals_;
+femtin::Array<PeripheralHandler*, 3> peripherals_;
 
 /// === Public Definitions	========================================================================
 
@@ -38,6 +38,7 @@ bool subscribe(PeripheralHandler& _handler)
 //	case Peripherals_e::UART2:
 	case Peripherals_e::UART_3:
 	case Peripherals_e::I2C_1:
+	case Peripherals_e::ADC_1:
 	{
 		peripherals_[static_cast<size_t>(_handler.peripheral())] = &_handler;
 		break;
@@ -145,6 +146,28 @@ void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *_hi2c)
 	assert(_hi2c->user_param != 0);
 
 	reinterpret_cast<PeripheralHandler*>(_hi2c->user_param)->HAL_I2C_ErrorCallback(_hi2c);
+}
+
+///	------------------------------------------------------------------------------------------------
+
+void ADC_IRQHandler()
+{
+//	HAL_ADC_IRQHandler(peripherals_[static_cast<size_t>(Peripherals_e::ADC_1)]->handle().adc_);
+}
+
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* _hadc)
+{
+	assert(_hadc->user_param != 0);
+
+	reinterpret_cast<PeripheralHandler*>(_hadc->user_param)->HAL_ADC_ConvHalfCpltCallback(_hadc);
+}
+
+/// ------------------------------------------------------------------------------------------------
+
+void DMA2_Stream4_IRQHandler()
+{
+	HAL_DMA_IRQHandler(
+			peripherals_[static_cast<size_t>(Peripherals_e::ADC_1)]->handle().adc_->DMA_Handle);
 }
 
 /// ------------------------------------------------------------------------------------------------
