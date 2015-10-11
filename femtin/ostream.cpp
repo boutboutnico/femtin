@@ -56,11 +56,11 @@ int ostream::format(const char* fmt, ...)
 
 int ostream::format(const char* fmt, va_list args)
 {
-
 	uint32_t ret = vsnprintf(buffer_.begin(), buffer_.max_size(), fmt, args);
 	if (ret > 0)
 	{
-		write(buffer_.begin(), ret);
+//		write(buffer_.begin(), ret);
+		write(buffer_.subarray(0, ret));
 	}
 	return ret;
 }

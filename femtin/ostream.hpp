@@ -172,15 +172,18 @@ public:
 
 	virtual ostream& endl()
 	{
-		write("\n", 1);
+//		write("\n", 1);
+		write("\n");
 		return *this;
 	}
 
 protected:
 	///	===	Protected Declarations	================================================================
 
-	void write(const char* _s, size_t _size);
-	virtual void write(const uint8_t* _buf, size_t _size) =0;
+//	void write(const char* _s, size_t _size);
+	virtual void write(const Array_ptr<const char> _s);
+//	virtual void write(const uint8_t* _buf, size_t _size) =0;
+	virtual void iwrite(const Array_ptr<const uint8_t> _buf) = 0;
 
 	template<typename T> ostream& iformat(T v);
 
@@ -203,9 +206,17 @@ private:
 /// === Members Definitions	========================================================================
 
 ///	Centralized cast from char* to uint8_t*
-inline void ostream::write(const char* _s, size_t _size)
+//inline void ostream::write(const char* _s, size_t _size)
+//{
+//	write(reinterpret_cast<const uint8_t*>(_s), _size);
+//}
+
+inline void ostream::write(const Array_ptr<const char> _s)
 {
-	write(reinterpret_cast<const uint8_t*>(_s), _size);
+//	write(reinterpret_cast<const uint8_t*>(_s), _size);
+//	write(static_cast<Array_ptr<const uint8_t> >(_s));
+	iwrite(Array_ptr<const uint8_t>(_s));
+//	iwrite(_s);
 }
 
 template<typename T>

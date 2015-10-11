@@ -27,6 +27,7 @@
 
 #include "femtin/iomanip.hpp"
 #include "femtin/freeRTOS_wrapper/delay.hpp"
+#include "bsp/led/led.hpp"
 #include "peripherals/clcd_420b/clcd_420b.hpp"
 
 /// === Namespaces	================================================================================
@@ -34,6 +35,7 @@
 using namespace femtin;
 using namespace femtin::unit;
 using namespace femtin::os;
+using namespace board::led;
 using namespace peripheral::lcd;
 
 /// === Constants	================================================================================
@@ -55,39 +57,50 @@ void clcd_demo()
 	/// --- Infinite Loop	------------------------------------------------------------------------
 	for (;;)
 	{
-//		LED_Green.toggle();
-		lcd.clear();
+		LED_Green.toggle();
 
+		lcd.clear();
+		lcd << "Write char" << endl;
 		char c = 'a';
 		lcd << c << ' ' << 'c' << endl;
 		task_delay(delay);
 
+		lcd.clear();
+		lcd << "Write string" << endl;
 		const char* s = "coucou";
 		char str[] = "salut ";
 		lcd << s << ' ' << str << ' ' << "string" << endl;
 		task_delay(delay);
 
+		lcd.clear();
+		lcd << "Write uint8_t" << endl;
 		int8_t v_int8 = -12;
 		uint8_t v_uint8 = 34;
 		lcd << v_int8 << ' ' << v_uint8 << endl;
 		task_delay(delay);
 
+		lcd.clear();
+		lcd << "Write uint16_t" << endl;
 		int16_t v_int16 = -345;
 		uint16_t v_uint16 = 456;
 		lcd << v_int16 << ' ' << v_uint16 << endl;
 		task_delay(delay);
 
+		lcd.clear();
+		lcd << "Write uint32_t" << endl;
 		int32_t v_int32 = -71234;
 		uint32_t v_uint32 = 86456;
 		lcd << v_int32 << ' ' << v_uint32 << endl;
 		task_delay(delay);
 
 		lcd.clear();
-		lcd << ios_base::hex << v_uint16 << endl;
-		lcd << ios_base::oct << v_uint16 << endl;
-		lcd << ios_base::dec << v_uint16 << endl;
+		lcd << "Write :" << endl;
+		lcd << "hex " << ios_base::hex << v_uint16 << endl;
+		lcd << "oct " << ios_base::oct << v_uint16 << endl;
+		lcd << "dec " << ios_base::dec << v_uint16 << endl;
 		task_delay(delay);
 
+		lcd.clear();
 		lcd << width(4) << 43 << endl;
 		task_delay(delay);
 
@@ -109,17 +122,9 @@ void clcd_demo()
 		lcd.cursor(true);
 		task_delay(delay);
 
-//		lcd.home();
-//		lcd.print("Home");
-//		task_delay(delay);
-//
-//		lcd.cursor_xy(10, 2);
-//		lcd.print("10,2");
-//		task_delay(delay);
-//
-//		lcd.move_to_row(1);
-//		lcd.print("row 1");
-//		task_delay(delay);
+		lcd.home();
+		lcd << "Home" << endl;
+		task_delay(delay);
 	}
 }
 /// ------------------------------------------------------------------------------------------------

@@ -16,7 +16,6 @@ using namespace peripheral::lcd;
 #include "femtin/freeRTOS_wrapper/delay.hpp"
 #include "portable/pinout_mapping.hpp"
 #include "bsp/led/led.hpp"
-//#include "trace/trace.hpp"
 
 /// === Namespaces	================================================================================
 
@@ -29,13 +28,13 @@ using namespace board::mcu;
 /// === Public Definitions	========================================================================
 
 CLCD_420B::CLCD_420B()
-		: PeripheralHandler(LCD_I2C_e, &I2C_handle_), ostream(buffer_), current_row_(0), SEM_I2C(0)
-{
-}
-
-/// ------------------------------------------------------------------------------------------------
-
-CLCD_420B::~CLCD_420B()
+		: 	PeripheralHandler(LCD_I2C_e, &I2C_handle_),
+			ostream(buffer_ostream_),
+			I2C_handle_(),
+			SEM_I2C(0),
+			buffer_write_(),
+			buffer_ostream_(),
+			current_row_(0)
 {
 }
 
@@ -117,7 +116,8 @@ void CLCD_420B::clear()
 
 	buffer_write_[0] = COMMAND;
 	buffer_write_[1] = CLEAR;
-	write(buffer_write_, 2);
+//	write(buffer_write_, 2);
+	write(buffer_write_.subarray(0, 2));
 	task_delay(millisecond(15));
 }
 
@@ -231,13 +231,12 @@ void CLCD_420B::call_custom(uint8_t _code)
 
 /// === Private Definitions	========================================================================
 
-void CLCD_420B::write(const uint8_t* _buf, size_t _size)
+void CLCD_420B::write(femtin::Array_ptr<const uint8_t> _buf)
 {
-// HAL_StatusTypeDef HAL_I2C_Master_Transmit_IT(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size);
+// HAL_StatusTypeDef HAL_I2C_Master_Transmit_IT(
+//			I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size);
 
-	if (HAL_I2C_Master_Transmit_IT(&I2C_handle_, LCD_I2C_Address << 1, const_cast<uint8_t*>(_buf),
-									static_cast<uint16_t>(_size))
-		!= HAL_OK)
+	if (HAL_I2C_Master_Transmit_IT(&I2C_handle_, LCD_I2C_Address << 1, _buf.data(), _buf.max_size()) != HAL_OK)
 	{
 		board::led::LED_Red.on();
 //		trace_printf("I2C Error: %d\n", HAL_I2C_GetError(&I2C_handle_));
