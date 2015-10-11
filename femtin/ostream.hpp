@@ -30,9 +30,9 @@
 #include <cstring>
 #include <cstdint>
 #include <cstdarg>
-#include "femtin/array.hpp"
-#include "femtin/ulimits.h"
-#include "femtin/ios.hpp"
+#include "array.hpp"
+#include "ulimits.h"
+#include "ios.hpp"
 
 /// === Namespaces	================================================================================
 
