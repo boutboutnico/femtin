@@ -35,6 +35,7 @@ public:
 	/// === Public Declarations	====================================================================
 
 	CLCD_420B();
+	virtual ~CLCD_420B();    /// TODO useless ?
 
 	bool initialize();
 
@@ -84,21 +85,18 @@ private:
 
 	/// === Private Declarations	================================================================
 
-	virtual void write(femtin::Array_ptr<const uint8_t> _buf);
+	virtual void write(const uint8_t* _buf, size_t _size);
 
 	virtual void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *_I2C_handle);
 	virtual void HAL_I2C_ErrorCallback(I2C_HandleTypeDef* _I2C_handle);
 
 	/// === Private Attributes	====================================================================
 
+	uint8_t buffer_write_[BUFFER_SIZE];
+	femtin::Array<char, COLUMN_NUMBER * ROW_NUMBER> buffer_;
+	uint8_t current_row_;
 	I2C_HandleTypeDef I2C_handle_;
 	femtin::os::Semaphore SEM_I2C;
-
-//	uint8_t buffer_write_[BUFFER_SIZE];
-	femtin::Array<uint8_t, BUFFER_SIZE> buffer_write_;
-	femtin::Array<char, COLUMN_NUMBER * ROW_NUMBER> buffer_ostream_;
-	uint8_t current_row_;
-
 };
 /// === Inlines Definitions	========================================================================
 

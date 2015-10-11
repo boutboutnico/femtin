@@ -65,7 +65,7 @@ private:
 
 	/// === Private Declarations	================================================================
 
-	virtual void iwrite(const femtin::Array_ptr<const uint8_t> _buf);
+	virtual void write(const uint8_t* _buf, size_t _size);
 
 	virtual void HAL_UART_TxCpltCallback(UART_HandleTypeDef* _huart);
 	virtual void HAL_UART_ErrorCallback(UART_HandleTypeDef* _huart);

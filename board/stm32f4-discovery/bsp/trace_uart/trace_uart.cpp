@@ -99,11 +99,11 @@ bool Trace_UART::initialize(uint32_t _speed)
 
 /// === Private Definitions	========================================================================
 
-void Trace_UART::iwrite(const femtin::Array_ptr<const uint8_t> _buf)
+void Trace_UART::write(const uint8_t* _buf, size_t _size)
 {
 	femtin::Guard<femtin::os::Mutex> guard(MUT_trace, femtin::unit::millisecond(200));
 
-	if (HAL_UART_Transmit_IT(&UART_handle_, _buf.data(), _buf.max_size()) != HAL_OK)
+	if (HAL_UART_Transmit_IT(&UART_handle_, _buf, static_cast<uint16_t>(_size)) != HAL_OK)
 	{
 		board::led::LED_Red.on();
 	}
