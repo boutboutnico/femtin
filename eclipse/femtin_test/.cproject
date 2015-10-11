@@ -12,7 +12,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.mingw.exe.debug.1462965970" name="Debug" parent="cdt.managedbuild.config.gnu.mingw.exe.debug">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.mingw.exe.debug.1462965970" name="Debug" parent="cdt.managedbuild.config.gnu.mingw.exe.debug" preannouncebuildStep="Clean all" prebuildStep="rm -rf src/femtin/template/template.d src/test/main_test.d src/test/main_test.o src/femtin/xprintf/xprintf.o src/femtin/template/template.o src/femtin/signal_proccessing/filter.o femtin_test.exe src/femtin/xprintf/xprintf.d src/femtin/crc/crc7.d src/femtin/signal_proccessing/filter.d src/femtin/crc/crc7.o ">
 					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1462965970." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.debug.651194008" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.debug.1995843059" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.debug"/>
@@ -26,13 +26,14 @@
 								<option id="gnu.cpp.compiler.mingw.exe.debug.option.debugging.level.858072091" name="Debug Level" superClass="gnu.cpp.compiler.mingw.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.dialect.std.1915667693" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.c++11" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.661907149" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/femtin}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/src/test}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1247665817" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1899698216" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug">
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.mingw.exe.debug.option.optimization.level.490252307" name="Optimization Level" superClass="gnu.c.compiler.mingw.exe.debug.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
 								<option id="gnu.c.compiler.mingw.exe.debug.option.debugging.level.1462776990" name="Debug Level" superClass="gnu.c.compiler.mingw.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.dialect.std.679538236" name="Language standard" superClass="gnu.c.compiler.option.dialect.std" value="gnu.c.compiler.dialect.default" valueType="enumerated"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1565385936" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug.635619268" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug"/>
@@ -46,7 +47,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="external/femtin/xprintf|external/femtin/template|external/femtin/state_machine|external/femtin/signal_proccessing|external/femtin/navigation|external/femtin/freeRTOS_wrapper|external/femtin/FatFs_wrapper|femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -93,7 +94,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="external/femtin/xprintf|external/femtin/template|external/femtin/state_machine|external/femtin/signal_proccessing|external/femtin/navigation|external/femtin/freeRTOS_wrapper|external/femtin/FatFs_wrapper|femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
