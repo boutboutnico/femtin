@@ -31,6 +31,7 @@ using namespace os;
 /// === Public Definitions	========================================================================
 
 Queue::Queue(const UBaseType_t _n_msg, const UBaseType_t _msg_size)
+		: handle_()
 {
 	handle_ = xQueueCreate(_n_msg, _msg_size);
 

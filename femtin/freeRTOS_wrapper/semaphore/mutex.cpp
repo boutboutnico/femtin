@@ -23,6 +23,7 @@ using namespace femtin::unit;
 /// === Public Definitions	========================================================================
 
 Mutex::Mutex()
+		: handle_()
 {
 	handle_ = xSemaphoreCreateMutex();
 	assert(handle_ != NULL);

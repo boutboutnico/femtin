@@ -38,6 +38,7 @@ Software_Timer::Software_Timer(	char const * const name,
 								millisecond time_ms,
 								bool auto_reload,
 								timer_callback_t callback)
+		: handle_()
 {
 	///	 TimerHandle_t xTimerCreate
 	///	  ( const char * const pcTimerName,

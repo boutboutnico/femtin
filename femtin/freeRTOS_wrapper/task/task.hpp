@@ -36,9 +36,6 @@ namespace os
 
 /// === Class Declarations	========================================================================
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
-
 class Task
 {
 public:
@@ -64,8 +61,6 @@ private:
 	TaskHandle_t handle_;
 
 };
-
-#pragma GCC diagnostic push
 
 /// === Inline Definitons	========================================================================
 

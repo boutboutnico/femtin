@@ -14,7 +14,7 @@ using namespace femtin::fatfs;
 /// === Public Definitions	========================================================================
 
 File::File()
-		: name_()
+		: file_(), name_()
 {
 
 }
@@ -66,7 +66,7 @@ char* File::gets(char* _str, size_t _len)
 
 int16_t File::puts(const char* _str)
 {
-	return f_puts(_str, &file_);
+	return static_cast<int16_t>(f_puts(_str, &file_));
 }
 
 /// === Private Definitions	========================================================================

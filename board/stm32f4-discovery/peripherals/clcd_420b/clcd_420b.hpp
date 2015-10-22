@@ -35,7 +35,6 @@ public:
 	/// === Public Declarations	====================================================================
 
 	CLCD_420B();
-	virtual ~CLCD_420B();    /// TODO useless ?
 
 	bool initialize();
 
@@ -98,6 +97,7 @@ private:
 	I2C_HandleTypeDef I2C_handle_;
 	femtin::os::Semaphore SEM_I2C;
 };
+
 /// === Inlines Definitions	========================================================================
 
 inline femtin::ostream& CLCD_420B::endl()

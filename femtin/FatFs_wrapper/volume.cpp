@@ -18,6 +18,7 @@ using namespace femtin::fatfs;
 /// === Public Definitions	========================================================================
 
 Volume::Volume()
+		: fatfs_(), path_()
 {
 	memset(path_, 0, sizeof(char) * 12);
 }

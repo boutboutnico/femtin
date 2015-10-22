@@ -31,6 +31,7 @@ using namespace os;
 /// === Public Definitions	========================================================================
 
 Task::Task(const char* name, const uint16_t stack_depth, const UBaseType_t priority)
+		: handle_()
 {
 	/// signed char xTaskGenericCreate(
 	/// void (*)(void *),

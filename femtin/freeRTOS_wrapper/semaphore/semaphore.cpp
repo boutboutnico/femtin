@@ -36,6 +36,7 @@ using namespace femtin::unit;
 /// === Public Definitions	========================================================================
 
 Semaphore::Semaphore(uint8_t n_token)
+		: handle_()
 {
 	if (n_token == 0)
 	{
