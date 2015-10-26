@@ -45,7 +45,8 @@ void notifyGiveISR(const TaskHandle_t& _handle);
 uint32_t notifyTake(bool is_cleared_on_exit, unit::millisecond _timeout);
 
 /// ------------------------------------------------------------------------------------------------
-}/// os
-}/// femtin
-#endif	/// DIRECT_TASK_NOTIFICATION_HPP_
+
+}
+}
+#endif
 /// END OF FILE	====================================================================================

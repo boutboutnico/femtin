@@ -30,11 +30,14 @@
 
 /// === Namespaces	================================================================================
 
+namespace femtin
+{
 namespace os
 {
 
 const TickType_t TIMEOUT_MAX = portMAX_DELAY;
 
 }
-#endif	/// FEMTIN_FREERTOS_WRAPPER_HPP_
+}
+#endif
 /// === END OF FILE	================================================================================

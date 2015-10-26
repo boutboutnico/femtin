@@ -39,9 +39,6 @@ namespace os
 
 /// === Class Declarations	========================================================================
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
-
 class Semaphore
 {
 public:
@@ -60,8 +57,6 @@ private:
 
 	SemaphoreHandle_t handle_;
 };
-
-#pragma GCC diagnostic pop
 
 /// === Inline Definitions	========================================================================
 

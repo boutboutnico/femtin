@@ -31,6 +31,7 @@
 #include "femtin/unit/base_type/time_unit_type.hpp"
 
 /// === Namespaces	================================================================================
+
 namespace femtin
 {
 namespace os
@@ -39,9 +40,6 @@ namespace os
 /// === Forward Declarations	====================================================================
 /// === Enumerations	============================================================================
 /// === Class Declarations	========================================================================
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
 
 class Mutex
 {
@@ -63,8 +61,6 @@ private:
 
 	SemaphoreHandle_t handle_;
 };
-
-#pragma GCC diagnostic pop
 
 /// === Inlines Declarations	====================================================================
 
