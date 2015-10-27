@@ -28,6 +28,10 @@
 
 #include "FreeRTOS.h"
 
+#ifdef STM32F407xx
+#include "stm32f4xx_hal.h"
+#endif
+
 /// === Namespaces	================================================================================
 
 namespace femtin
@@ -36,6 +40,15 @@ namespace os
 {
 
 const TickType_t TIMEOUT_MAX = portMAX_DELAY;
+
+inline bool is_in_ISR()
+{
+#ifdef STM32F407xx
+	return __get_IPSR() != 0;
+#else
+#warning is_in_ISR must be defined according to target
+#endif
+}
 
 }
 }

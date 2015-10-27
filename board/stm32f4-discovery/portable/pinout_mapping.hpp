@@ -63,7 +63,7 @@ const uint16_t LED_BLUE_PIN = GPIO_PIN_15;
 
 const mcu::Peripherals_e Trace_UART_e = mcu::Peripherals_e::UART_3;
 extern USART_TypeDef* Trace_UART;
-extern GPIO_TypeDef* Trace_UART_TX_GPIO_PORT;
+extern GPIO_TypeDef* Trace_UART_TX_GPIO_PORT;	/// GPIOD
 const uint16_t Trace_UART_TX_PIN = GPIO_PIN_8;
 const uint8_t Trace_UART_TX_PIN_AF = GPIO_AF7_USART3;
 

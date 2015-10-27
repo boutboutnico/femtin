@@ -36,11 +36,6 @@ namespace femtin
 {
 namespace os
 {
-
-//register ULONG32 xPSR __asm("xpsr");
-//
-//if (0 == (xPSR & 0xFFU))    /// Thread context
-
 /// ------------------------------------------------------------------------------------------------
 
 /// TODO Use constexp ??
@@ -66,12 +61,12 @@ inline void task_delay(unit::millisecond _time)
 
 /// ------------------------------------------------------------------------------------------------
 
-//inline void delayUntil(TickType_t time_ms)
-//{
-//	TickType_t xLastWakeTime = xTaskGetTickCount();
-//
-//	vTaskDelayUntil(&xLastWakeTime, ms_to_ticks(time_ms));
-//}
+inline void task_delay_until(unit::millisecond _time)
+{
+	TickType_t xLastWakeTime = xTaskGetTickCount();
+
+	vTaskDelayUntil(&xLastWakeTime, ms_to_ticks(_time));
+}
 ///	------------------------------------------------------------------------------------------------
 }/// os
 }    /// femtin
