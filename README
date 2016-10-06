@@ -1,0 +1,5 @@
+Goal:
+- C++ OS wrapper for bare metal
+- Powerful abstraction
+- No or low runtime cost
+- No or low overhead
