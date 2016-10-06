@@ -27,12 +27,11 @@ using namespace femtin::system_controller;
 /// === Includes	================================================================================
 
 #include "femtin/freeRTOS_wrapper/delay.hpp"
-#include "bsp/trace_uart/trace_uart.hpp"
+#include "femtin/trace/trace.hpp"
 
 /// === Namespaces	================================================================================
 
 using namespace femtin;
-using namespace board::mcu;
 using namespace application;
 
 /// === Constants	================================================================================
@@ -52,27 +51,26 @@ void Component_Registry::run()
 {
 	/// --- Initialization	------------------------------------------------------------------------
 
-	trace << "==========\tStart\t==========" << endl;
+	TRACE_F("Component_Registry", "==========\tStart\t==========");
 
 	/// TODO test with for(IComponent* comp : components) ???
 	for (uint8_t i = 0; i < COMPONENT_COUNT; i++)
 	{
-		components_[i]->initialize(*this) ?
-				trace << "[" << components_[i]->name().c_str() << "]\tInitialized" << endl :
-				trace << "[" << components_[i]->name().c_str() << "]\t!!! NOT initialized !!!"
-						<< endl;
+		if (components_[i]->initialize(*this))
+		TRACE_F(components_[i]->name().c_str(), "Initialized\n");
+		else
+		TRACE_F(components_[i]->name().c_str(), "!!! NOT initialized !!!\n");
 	}
 
 	for (uint8_t i = 0; i < COMPONENT_COUNT; i++)
 	{
-		components_[i]->start() ?
-				trace << "[" << components_[i]->name().c_str() << "]\tStarted " << ios_base::hex
-						<< reinterpret_cast<uint32_t>(components_[i]->get_task().handle())
-						<< ios_base::dec << endl :
-				trace << "[" << components_[i]->name().c_str() << "]\t!!! NOT started !!!" << endl;
+		if (components_[i]->start())
+		TRACE_F(components_[i]->name().c_str(), "Started 0x%x\n",
+				reinterpret_cast<uint32_t>(components_[i]->get_task().handle()));
+		else TRACE_F(components_[i]->name().c_str(), "!!! NOT started !!!\n");
 	}
 
-	trace << Task::number_of_tasks() << " tasks are running" << endl;
+	TRACE_F("Component_Registry", "%d tasks are running\n", Task::number_of_tasks());
 	assert(TASK_COUNT == Task::number_of_tasks());
 
 	/// --- Infinite Loop	------------------------------------------------------------------------
@@ -83,8 +81,8 @@ void Component_Registry::run()
 	for (;;)
 	{
 		Task::list_custom(buffer, task_status);
-		trace << "Name\tState\tPrio\tNum\tStack" << endl;
-		trace << buffer << endl;
+		TRACE("Name\tState\tPrio\tNum\tStack\n");
+		TRACE(buffer);
 
 		femtin::os::task_delay_until(unit::second(10));
 	}

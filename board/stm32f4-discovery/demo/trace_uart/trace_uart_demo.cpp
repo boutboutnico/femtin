@@ -25,7 +25,7 @@
 
 /// === Includes	================================================================================
 
-#include "femtin/iomanip.hpp"
+//#include "femtin/iomanip.hpp"
 #include "femtin/freeRTOS_wrapper/delay.hpp"
 #include "bsp/trace_uart/trace_uart.hpp"
 

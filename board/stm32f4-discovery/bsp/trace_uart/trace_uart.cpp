@@ -38,7 +38,7 @@ Trace_UART board::mcu::trace;
 /// === Public Definitions	========================================================================
 
 Trace_UART::Trace_UART()
-		: PeripheralHandler(Trace_UART_e, &UART_handle_), ostream(buffer_), SEM_UART(0), MUT_trace()
+		: PeripheralHandler(Trace_UART_e, &UART_handle_), SEM_UART(0), MUT_trace()
 {
 	initialize(115200);
 }
@@ -97,7 +97,7 @@ bool Trace_UART::initialize(uint32_t _speed)
 	return true;
 }
 
-/// === Private Definitions	========================================================================
+/// ------------------------------------------------------------------------------------------------
 
 void Trace_UART::write(const uint8_t* _buf, size_t _size)
 {
@@ -112,13 +112,14 @@ void Trace_UART::write(const uint8_t* _buf, size_t _size)
 
 	if (SEM_UART.take(femtin::unit::millisecond(200)) == false)
 	{
+		board::led::LED_Red.on();
 		while (1)
 		{
 		}
 	}
 }
 
-/// ------------------------------------------------------------------------------------------------
+/// === Private Definitions	========================================================================
 
 void Trace_UART::HAL_UART_TxCpltCallback(UART_HandleTypeDef* _huart)
 {
