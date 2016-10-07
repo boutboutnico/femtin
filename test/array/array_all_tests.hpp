@@ -42,7 +42,7 @@ namespace array
 
 void array_all()
 {
-	cout << "\n=== Array" << endl;
+//	cout << "\n=== Array" << endl;
 
 	default_constructor();
 	accessors();

@@ -15,10 +15,10 @@
 
 /// ===	NAMESPACES	================================================================================
 
-#ifdef FEMTIN_TRACE
-
 namespace femtin
 {
+
+#ifdef FEMTIN_TRACE
 
 class Trace
 {
@@ -37,7 +37,6 @@ private:
 
 	static char buffer_[BUFFER_LENGHT];
 };
-
 #endif
 
 /// ------------------------------------------------------------------------------------------------

@@ -47,7 +47,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="external/femtin/xprintf|external/femtin/template|external/femtin/state_machine|external/femtin/signal_proccessing|external/femtin/navigation|external/femtin/freeRTOS_wrapper|external/femtin/FatFs_wrapper|femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="femtin/core/system_controller|external/femtin/xprintf|external/femtin/template|external/femtin/state_machine|external/femtin/signal_proccessing|external/femtin/navigation|external/femtin/freeRTOS_wrapper|external/femtin/FatFs_wrapper|femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -94,7 +94,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="external/femtin/xprintf|external/femtin/template|external/femtin/state_machine|external/femtin/signal_proccessing|external/femtin/navigation|external/femtin/freeRTOS_wrapper|external/femtin/FatFs_wrapper|femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry excluding="femtin/core/system_controller|external/femtin/xprintf|external/femtin/template|external/femtin/state_machine|external/femtin/signal_proccessing|external/femtin/navigation|external/femtin/freeRTOS_wrapper|external/femtin/FatFs_wrapper|femtin/state_machine|femtin/FatFs_wrapper|femtin/navigation|femtin/freeRTOS_wrapper" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

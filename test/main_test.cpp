@@ -6,8 +6,8 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
 
 /// === Includes	================================================================================
 
@@ -24,7 +24,7 @@ using namespace femtin::test;
 
 int main()
 {
-	cout << "=== Start Tests	===" << endl;
+//	cout << "=== Start Tests	===" << endl;
 
 	array::array_all();
 
@@ -38,7 +38,7 @@ int main()
 
 	unit::unit_all();
 
-	cout << "\n=== End Tests	===" << endl;
+//	cout << "\n=== End Tests	===" << endl;
 }
 
 /// === END OF FILE	================================================================================
