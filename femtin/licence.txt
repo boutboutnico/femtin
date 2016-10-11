@@ -1,5 +1,5 @@
 /*
- Femtin V0.0.1 - Copyright (C) 2015 Nicolas Boutin.
+ Femtin V0.0.1 - Copyright (C) 2016 Nicolas Boutin.
  All rights reserved
 
  This file is part of the Femtin distribution.

@@ -5,38 +5,34 @@
  *      Author: Nico_user
  */
 
-#include "tsk_test.h"
+#include "task_test.hpp"
+using namespace femtin::demo;
 
-/// === INCLUDES	================================================================================
+/// === Includes ===================================================================================
 
-#include "BlinkLed.h"
+#include "bsp/led/led.hpp"
 
-/// === STATIC IMPORT	============================================================================
+/// === Namespaces =================================================================================
 
-/// === STATIC DEFINITIONS	========================================================================
+using namespace board::led;
 
-//OS::Semaphore TSK_T1::sem(TSK_T1::SEMAPHORE_N_TOKEN);
+/// === Public Definitions =========================================================================
 
-/// === PUBLIC DEFINITIONS	========================================================================
-
-TSK_T1::TSK_T1()
-		: Task("TSK_T1", STACK_SIZE, STACK_PRIORITY)
-//,			timer("TIM1", TIMER_DURATION, true, TSK_T1::callback)
+Task1::Task1() : Task("Task1", STACK_SIZE, STACK_PRIORITY)
 {
-
 }
 
 /// ------------------------------------------------------------------------------------------------
 
-void TSK_T1::run()
+void Task1::run()
 {
-	const TickType_t xDelay = 500 / portTICK_PERIOD_MS;
+  const TickType_t xDelay = 500 / portTICK_PERIOD_MS;
 
-	for (;;)
-	{
-		LED_Green.toggle();
-		vTaskDelay(xDelay);
-	}
+  for (;;)
+  {
+    LED_Green.toggle();
+    vTaskDelay(xDelay);
+  }
 
 #if 0
 //	xSerialxPrintf_P(&xSerialPort, PSTR("Enter run\n"));
@@ -90,22 +86,15 @@ void TSK_T1::run()
 
 /// ------------------------------------------------------------------------------------------------
 
-//void TSK_T1::callback(TimerHandle_t pxTimer)
-//{
-//	sem.give();
-//}
-
-/// ------------------------------------------------------------------------------------------------
-
-void TSK_T2::run()
+void Task2::run()
 {
-	const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+  const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
 
-	for (;;)
-	{
-		LED_Orange.toggle();
-		vTaskDelay(xDelay);
-	}
+  for (;;)
+  {
+    LED_Orange.toggle();
+    vTaskDelay(xDelay);
+  }
 }
 
-/// END OF FILE	====================================================================================
+/// === END OF FILE ================================================================================

@@ -42,7 +42,7 @@ GPIO_TypeDef* LED_BLUE_GPIO_PORT = GPIOD;
 
 /// --- UART3 - Trace	----------------------------------------------------------------------------
 
-USART_TypeDef* Trace_UART = USART3;
+//USART_TypeDef* Trace_UART = USART3;
 GPIO_TypeDef* Trace_UART_TX_GPIO_PORT = GPIOD;
 
 /// --- I2C1 - LCD	--------------------------------------------------------------------------------
