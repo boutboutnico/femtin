@@ -25,15 +25,15 @@
 #include "task_test.hpp"
 using namespace femtin::demo;
 
-/// === Includes ===================================================================================
+/// === Includes
 
 #include "bsp/led/led.hpp"
 
-/// === Namespaces =================================================================================
+/// === Namespaces
 
 using namespace board::led;
 
-/// === Public Definitions =========================================================================
+/// === Public Definitions
 
 Task1::Task1() : Task("Task1", STACK_SIZE, STACK_PRIORITY)
 {
@@ -54,6 +54,12 @@ void Task1::run()
 
 /// ------------------------------------------------------------------------------------------------
 
+Task2::Task2() : Task("Task2", STACK_SIZE, STACK_PRIORITY)
+{
+}
+
+/// ------------------------------------------------------------------------------------------------
+
 void Task2::run()
 {
   const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
@@ -65,4 +71,4 @@ void Task2::run()
   }
 }
 
-/// === END OF FILE ================================================================================
+/// === END OF FILE

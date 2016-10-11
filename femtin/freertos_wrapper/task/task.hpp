@@ -24,65 +24,78 @@
 #ifndef FEMTIN_TASK_HPP_
 #define FEMTIN_TASK_HPP_
 
-/// === Includes ===================================================================================
+/// === Includes
 
 #include "FreeRTOS.h"
 #include "task.h"
 
 #include "../freertos_wrapper.hpp"
 
-/// === Namespaces =================================================================================
+/// === Namespaces
 
 namespace femtin
 {
 namespace os
 {
 
-/// === Class Declarations =========================================================================
+/// === Class Declarations
 
 class Task
 {
 public:
-  /// --- Public Functions -------------------------------------------------------------------------
+  /// --- Public Types
 
-  Task(const char* name, const uint16_t stack_depth, const UBaseType_t priority);
+  typedef TaskHandle_t handle_t;
+
+  /// --- Public Functions
+
+  Task(const char* name, uint16_t stack_depth, uint16_t priority);
 
   virtual void run() = 0;
 
   void suspend();
-
   void resume();
 
-  TaskHandle_t handle() const;
+  handle_t handle() const;
   eTaskState state() const;
   char* name() const;
   uint16_t stack_depth() const;
-  UBaseType_t stack_high_water_mark() const;
+  uint16_t stack_high_water_mark() const;
 
-  /// --- Task Utilities ---------------------------------------------------------------------------
+  /// --- Task Utilities
 
-  static TaskHandle_t current_task_handle();
-  static TaskHandle_t idle_task_handle();
-  static TickType_t tick_count();
-  static UBaseType_t number_of_tasks();
+  static handle_t current_task_handle();
+  static handle_t idle_task_handle();
+  static uint32_t tick_count();
+  static uint32_t number_of_tasks();
   static void list(char* _write_buffer);
   //  static void list_custom(char* _write_buffer, femtin::Array_ptr<TaskStatus_t> _working_buffer);
   static void runtime_stats(char* _write_buffer);
 
 private:
-  /// --- Private Functions ------------------------------------------------------------------------
+  /// --- Private Functions
 
   static void callback(void* param);
 
-  /// --- Private Attributs ------------------------------------------------------------------------
+  /// --- Private Attributs
 
-  TaskHandle_t handle_;
+  handle_t handle_;
   const uint16_t stack_depth_;
 };
 
-/// === Inline Definitions =========================================================================
+/// === Inline Definitions
 
-inline TaskHandle_t Task::handle() const
+inline void Task::suspend()
+{
+  vTaskSuspend(handle_);
+}
+
+inline void Task::resume()
+{
+  vTaskResume(handle_);
+}
+
+inline Task::handle_t Task::handle() const
 {
   return handle_;
 }
@@ -103,25 +116,25 @@ inline uint16_t Task::stack_depth() const
 }
 
 #if (INCLUDE_uxTaskGetStackHighWaterMark == 1)
-inline UBaseType_t Task::stack_high_water_mark() const
+inline uint16_t Task::stack_high_water_mark() const
 {
   return uxTaskGetStackHighWaterMark(handle_);
 }
 #endif
 
-/// --- Task Utilities -----------------------------------------------------------------------------
+/// --- Task Utilities
 
-inline TaskHandle_t Task::current_task_handle()
+inline Task::handle_t Task::current_task_handle()
 {
   return xTaskGetCurrentTaskHandle();
 }
 
-inline TaskHandle_t Task::idle_task_handle()
+inline Task::handle_t Task::idle_task_handle()
 {
   return xTaskGetIdleTaskHandle();
 }
 
-inline TickType_t Task::tick_count()
+inline uint32_t Task::tick_count()
 {
   if (is_in_ISR() == true)
   {
@@ -133,7 +146,7 @@ inline TickType_t Task::tick_count()
   }
 }
 
-inline UBaseType_t Task::number_of_tasks()
+inline uint32_t Task::number_of_tasks()
 {
   return uxTaskGetNumberOfTasks();
 }
@@ -151,9 +164,7 @@ inline void runtime_stats(char* _write_buffer)
   vTaskGetRunTimeStats(_write_buffer);
 }
 #endif
-
-/// ------------------------------------------------------------------------------------------------
 }
 }
 #endif
-/// === END OF FILE ================================================================================
+/// === END OF FILE

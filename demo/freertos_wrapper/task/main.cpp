@@ -22,7 +22,7 @@
 ///
 /// ================================================================================================
 
-/// === Includes ===================================================================================
+/// === Includes
 
 #include <stdio.h>
 
@@ -31,11 +31,11 @@
 
 #include "task_test.hpp"
 
-/// === Namespaces =================================================================================
+/// === Namespaces
 
 using namespace femtin::demo;
 
-/// === Public Definitions =========================================================================
+/// === Public Definitions
 
 // Sample pragmas to cope with warnings. Please note the related line at
 // the end of this function, used to pop the compiler diagnostics status.
@@ -59,4 +59,4 @@ int main(int argc, char* argv[])
 
 #pragma GCC diagnostic pop
 
-/// === END OF FILE ================================================================================
+/// === END OF FILE

@@ -25,49 +25,50 @@
 #ifndef TASK_TEST_HPP
 #define TASK_TEST_HPP
 
-/// === Includes ===================================================================================
+/// === Includes
 
 #include "freertos_wrapper/task/task.hpp"
 
-/// === Namespaces =================================================================================
+/// === Namespaces
 
 namespace femtin
 {
 namespace demo
 {
 
-/// === Class Declarations =========================================================================
+/// === Class Declarations
 
 class Task1 : public femtin::os::Task
 {
 public:
   /// --- Public Constants
 
-  static const uint16_t STACK_SIZE        = configMINIMAL_STACK_SIZE;
-  static const UBaseType_t STACK_PRIORITY = (tskIDLE_PRIORITY + 2);
+  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
+  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 2);
 
   /// --- Public Declarations
 
   Task1();
-
   virtual void run();
-
-private:
 };
 
-/// === Class Declarations =========================================================================
+/// === Class Declarations
 
 class Task2 : public femtin::os::Task
 {
 public:
+  /// --- Public Constants
+
+  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
+  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 1);
+
   /// --- Public Declarations
 
-  Task2() : Task("TSK_T2", configMINIMAL_STACK_SIZE, tskIDLE_PRIORITY + 1) {}
+  Task2();
   virtual void run();
 };
-/// ------------------------------------------------------------------------------------------------
 }
 }
 
 #endif
-/// === END OF FILE ================================================================================
+/// === END OF FILE

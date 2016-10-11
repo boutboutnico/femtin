@@ -24,45 +24,31 @@
 #include "task.hpp"
 using namespace femtin::os;
 
-/// === Includes	================================================================================
+/// === Includes
 
-#include <cstdio>
 #include "task.h"
+#include <cstdio>
 
-/// === Public Definitions	========================================================================
+/// === Public Definitions
 
-Task::Task(const char* _name, const uint16_t _stack_depth, const UBaseType_t _priority)
-		: handle_(), stack_depth_(_stack_depth)
+Task::Task(const char* _name, const uint16_t _stack_depth, const uint16_t _priority)
+  : handle_(), stack_depth_(_stack_depth)
 {
-	/// signed char xTaskGenericCreate(
-	/// void (*)(void *),
-	/// const char *,
-	/// unsigned short int,
-	/// void *, unsigned char, void * *, unsigned char *, const xMEMORY_REGION *)
-	if (xTaskCreate(Task::callback, _name, _stack_depth, this, _priority, &handle_) != pdPASS)
-	{
-		for (;;)
-			;
-	}
+  /// signed char xTaskGenericCreate(
+  /// void (*)(void *),
+  /// const char *,
+  /// unsigned short int,
+  /// void *, unsigned char, void * *, unsigned char *, const xMEMORY_REGION *)
+  if (xTaskCreate(Task::callback, _name, _stack_depth, this, _priority, &handle_) != pdPASS)
+  {
+    for (;;)
+      ;
+  }
 }
 
 /// ------------------------------------------------------------------------------------------------
 
-void Task::suspend()
-{
-	vTaskSuspend(handle_);
-}
-
-/// ------------------------------------------------------------------------------------------------
-
-void Task::resume()
-{
-	vTaskResume(handle_);
-}
-
-/// ------------------------------------------------------------------------------------------------
-
-//void Task::list_custom(char* _write_buffer, femtin::Array_ptr<TaskStatus_t> _working_buffer)
+// void Task::list_custom(char* _write_buffer, femtin::Array_ptr<TaskStatus_t> _working_buffer)
 //{
 //	if (uxTaskGetSystemState(_working_buffer.begin(), _working_buffer.max_size(), NULL) != 0)
 //	{
@@ -90,12 +76,16 @@ void Task::resume()
 //				break;
 //
 //			default:
-//				/// Should not get here, but it is included to prevent static checking errors.
+//				/// Should not get here, but it is included to prevent static
+// checking
+// errors.
 //				status = 0x00;
 //				break;
 //			}
 //
-//			sprintf(_write_buffer, "%s\t%c\t%u\t%u\t%u\r\n", _working_buffer[i].pcTaskName, status,
+//			sprintf(_write_buffer, "%s\t%c\t%u\t%u\t%u\r\n",
+//_working_buffer[i].pcTaskName,
+// status,
 //					(unsigned int) _working_buffer[i].uxCurrentPriority,
 //					(unsigned int) _working_buffer[i].xTaskNumber,
 //					(unsigned int) _working_buffer[i].usStackHighWaterMark * 4);
@@ -108,12 +98,12 @@ void Task::resume()
 //	}
 //}
 
-/// === Private Definitions	========================================================================
+/// === Private Definitions
 
 void Task::callback(void* param)
 {
-/// TODO : static_cast or reinterpret_cast ?
-	(static_cast<Task*>(param))->run();
+  /// TODO : static_cast or reinterpret_cast ?
+  (static_cast<Task*>(param))->run();
 }
 
-/// === END OF FILE	================================================================================
+/// === END OF FILE
