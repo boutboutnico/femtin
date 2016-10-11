@@ -29,7 +29,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-//#include "femtin/array.hpp"
 #include "../freertos_wrapper.hpp"
 
 /// === Namespaces =================================================================================
@@ -39,14 +38,12 @@ namespace femtin
 namespace os
 {
 
-/// === Class Declarations
-/// ========================================================================
+/// === Class Declarations =========================================================================
 
 class Task
 {
 public:
-  /// Public Declarations
-  /// ========================================================================
+  /// --- Public Functions -------------------------------------------------------------------------
 
   Task(const char* name, const uint16_t stack_depth, const UBaseType_t priority);
 
@@ -62,32 +59,28 @@ public:
   uint16_t stack_depth() const;
   UBaseType_t stack_high_water_mark() const;
 
-  ///	--- Task Utilities
-  ///------------------------------------------------------------------------
+  /// --- Task Utilities ---------------------------------------------------------------------------
 
   static TaskHandle_t current_task_handle();
   static TaskHandle_t idle_task_handle();
   static TickType_t tick_count();
   static UBaseType_t number_of_tasks();
   static void list(char* _write_buffer);
-//  static void list_custom(char* _write_buffer, femtin::Array_ptr<TaskStatus_t> _working_buffer);
+  //  static void list_custom(char* _write_buffer, femtin::Array_ptr<TaskStatus_t> _working_buffer);
   static void runtime_stats(char* _write_buffer);
 
 private:
-  /// Private Declarations
-  /// ====================================================================
+  /// --- Private Functions ------------------------------------------------------------------------
 
   static void callback(void* param);
 
-  /// Private Attributs
-  /// ========================================================================
+  /// --- Private Attributs ------------------------------------------------------------------------
 
   TaskHandle_t handle_;
   const uint16_t stack_depth_;
 };
 
-/// === Inline Definitons
-/// ========================================================================
+/// === Inline Definitions =========================================================================
 
 inline TaskHandle_t Task::handle() const
 {
@@ -116,8 +109,7 @@ inline UBaseType_t Task::stack_high_water_mark() const
 }
 #endif
 
-///	--- Task Utilities
-///----------------------------------------------------------------------------
+/// --- Task Utilities -----------------------------------------------------------------------------
 
 inline TaskHandle_t Task::current_task_handle()
 {
@@ -164,5 +156,4 @@ inline void runtime_stats(char* _write_buffer)
 }
 }
 #endif
-/// === END OF FILE
-/// ================================================================================
+/// === END OF FILE ================================================================================
