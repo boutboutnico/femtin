@@ -26,17 +26,17 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/application/board</name>
+			<name>src/board</name>
 			<type>2</type>
 			<locationURI>FEMTIN_HOME/board</locationURI>
 		</link>
 		<link>
-			<name>src/application/demo</name>
+			<name>src/demo</name>
 			<type>2</type>
 			<locationURI>FEMTIN_HOME/demo</locationURI>
 		</link>
 		<link>
-			<name>src/application/femtin</name>
+			<name>src/femtin</name>
 			<type>2</type>
 			<locationURI>FEMTIN_HOME/femtin</locationURI>
 		</link>

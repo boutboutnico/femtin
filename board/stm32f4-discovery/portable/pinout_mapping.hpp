@@ -29,7 +29,7 @@
 
 #include "stm32f4xx_hal.h"
 
-#include "bsp/peripheral_handler.hpp"
+//#include "bsp/peripheral_handler.hpp"
 
 /// === Namespaces
 /// ================================================================================
@@ -65,19 +65,19 @@ const uint16_t LED_BLUE_PIN = GPIO_PIN_15;
 
 /// --- UART3 - Trace	----------------------------------------------------------------------------
 
-const mcu::Peripherals_e Trace_UART_e = mcu::Peripherals_e::UART_3;
+// const mcu::Peripherals_e Trace_UART_e = mcu::Peripherals_e::UART_3;
 extern USART_TypeDef* Trace_UART;
 extern GPIO_TypeDef* Trace_UART_TX_GPIO_PORT; /// GPIOD
-const uint16_t Trace_UART_TX_PIN   = GPIO_PIN_8;
-//const uint8_t Trace_UART_TX_PIN_AF = GPIO_AF7_USART3;
+const uint16_t Trace_UART_TX_PIN = GPIO_PIN_8;
+// const uint8_t Trace_UART_TX_PIN_AF = GPIO_AF7_USART3;
 //
-//const IRQn_Type Trace_UART_IRQn       = USART3_IRQn;
+// const IRQn_Type Trace_UART_IRQn       = USART3_IRQn;
 const uint8_t Trace_UART_IRQn_PRIO    = 6;
 const uint8_t Trace_UART_IRQn_SUBPRIO = 3;
 
 inline void Trace_UART_CLK_ENABLE()
 {
-//  __USART3_CLK_ENABLE();
+  //  __USART3_CLK_ENABLE();
 }
 
 inline void Trace_GPIO_CLK_ENABLE()
@@ -88,7 +88,7 @@ inline void Trace_GPIO_CLK_ENABLE()
 /// --- I2C1 - LCD
 /// --------------------------------------------------------------------------------
 
-const mcu::Peripherals_e LCD_I2C_e = mcu::Peripherals_e::I2C_1;
+// const mcu::Peripherals_e LCD_I2C_e = mcu::Peripherals_e::I2C_1;
 extern const I2C_TypeDef* LCD_I2C;
 extern const GPIO_TypeDef* LCD_I2C_GPIO_PORT;
 const uint16_t LCD_I2C_SCL_PIN   = GPIO_PIN_6;
@@ -118,7 +118,7 @@ inline void LCD_I2C_GPIO_CLK_ENABLE()
 
 /// --- ADC1 - Joystick	----------------------------------------------------------------------------
 
-const mcu::Peripherals_e JOYSTICK_ADC_e = mcu::Peripherals_e::ADC_1;
+// const mcu::Peripherals_e JOYSTICK_ADC_e = mcu::Peripherals_e::ADC_1;
 extern const ADC_TypeDef* JOYSTICK_ADC;            /// ADC1
 extern const GPIO_TypeDef* JOYSTICK_ADC_GPIO_PORT; /// GPIOA
 extern const DMA_Stream_TypeDef* JOYSTICK_ADC_DMA; /// DMA2_Stream4
