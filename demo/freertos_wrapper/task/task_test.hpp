@@ -1,12 +1,29 @@
 /*
- * tsk_test.H
- *
- *  Created on: 31 mars 2014
- *      Author: Nico_user
+ Femtin V0.0.1 - Copyright (C) 2015 Nicolas Boutin.
+ All rights reserved
+
+ This file is part of the Femtin distribution.
+
+ Femtin is free software; you can redistribute it and/or modify it under
+ the terms of the GNU General Public License (version 2) as published by the
+ Free Software Foundation.
+
+ Femtin is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.
  */
 
-#ifndef TSK_TEST_H_
-#define TSK_TEST_H_
+/// ================================================================================================
+///
+/// \file	task_test.hpp
+/// \brief
+/// \date	11/10/2016
+/// \author	nboutin
+///
+/// ================================================================================================
+
+#ifndef TASK_TEST_HPP
+#define TASK_TEST_HPP
 
 /// === Includes ===================================================================================
 
