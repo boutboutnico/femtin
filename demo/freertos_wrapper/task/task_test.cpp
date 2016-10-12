@@ -45,6 +45,9 @@ void Task1::run()
   {
     LED_Green.toggle();
     this_task::sleep_for(std::chrono::seconds(1));
+
+    LED_Green.toggle();
+    this_task::sleep_until(std::chrono::seconds(2));
   }
 }
 
