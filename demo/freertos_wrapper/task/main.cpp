@@ -24,16 +24,17 @@
 
 /// === Includes
 
-#include <stdio.h>
+#include "bsp/led/led.hpp"
 
-#include "FreeRTOS.h"
-#include "task.h"
+#include "freertos_wrapper/task/joinable_task.hpp"
+#include "freertos_wrapper/task/task.hpp"
 
 #include "task_test.hpp"
 
 /// === Namespaces
 
 using namespace femtin::demo;
+using namespace board::led;
 
 /// === Public Definitions
 
@@ -44,18 +45,34 @@ using namespace femtin::demo;
 #pragma GCC diagnostic ignored "-Wmissing-declarations"
 #pragma GCC diagnostic ignored "-Wreturn-type"
 
+/// ------------------------------------------------------------------------------------------------
+
+void run(void* _arg)
+{
+  for (;;)
+  {
+    LED_Red.toggle();
+    femtin::this_task::sleep_for(std::chrono::milliseconds(600));
+  }
+}
+
+/// ------------------------------------------------------------------------------------------------
+
 int main(int argc, char* argv[])
 {
   // At this stage the system clock should have already been configured
   // at high speed.
 
-  static Task1 tsk_t1;
-  static Task2 tsk_t2;
+  static Task1 task1;
+  static Task2 task2;
 
-  //	volatile size_t size = xPortGetFreeHeapSize();
+  static femtin::os::Joinable_Task task3(
+    "Task3", configMINIMAL_STACK_SIZE, tskIDLE_PRIORITY + 3, run, nullptr);
 
   vTaskStartScheduler(); // should never return
 }
+
+/// ------------------------------------------------------------------------------------------------
 
 #pragma GCC diagnostic pop
 

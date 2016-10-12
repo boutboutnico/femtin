@@ -11,6 +11,8 @@
 
 /// === Includes	================================================================================
 
+#include <thread>
+
 #include "array/array_all_tests.hpp"
 #include "buffer/buffer_all_tests.hpp"
 #include "mpl/mpl_all_tests.hpp"

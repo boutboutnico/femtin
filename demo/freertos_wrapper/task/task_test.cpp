@@ -35,39 +35,31 @@ using namespace board::led;
 
 /// === Public Definitions
 
-Task1::Task1() : Task("Task1", STACK_SIZE, STACK_PRIORITY)
-{
-}
+Task1::Task1() : Task("Task1", STACK_SIZE, STACK_PRIORITY) {}
 
 /// ------------------------------------------------------------------------------------------------
 
 void Task1::run()
 {
-  const TickType_t xDelay = 500 / portTICK_PERIOD_MS;
-
   for (;;)
   {
     LED_Green.toggle();
-    vTaskDelay(xDelay);
+    this_task::sleep_for(std::chrono::seconds(1));
   }
 }
 
 /// ------------------------------------------------------------------------------------------------
 
-Task2::Task2() : Task("Task2", STACK_SIZE, STACK_PRIORITY)
-{
-}
+Task2::Task2() : Task("Task2", STACK_SIZE, STACK_PRIORITY) {}
 
 /// ------------------------------------------------------------------------------------------------
 
 void Task2::run()
 {
-  const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
-
   for (;;)
   {
     LED_Orange.toggle();
-    vTaskDelay(xDelay);
+    this_task::sleep_for(std::chrono::milliseconds(500));
   }
 }
 

@@ -15,60 +15,49 @@
 
 /// ================================================================================================
 ///
-/// \file	task_test.hpp
+/// \file	mutex.hpp
 /// \brief
-/// \date	11/10/2016
+/// \date	30/05/2015
 /// \author	nboutin
 ///
 /// ================================================================================================
-
-#ifndef TASK_TEST_HPP
-#define TASK_TEST_HPP
+#ifndef FEMTIN_MUTEX_HPP_
+#define FEMTIN_MUTEX_HPP_
 
 /// === Includes
 
-#include "freertos_wrapper/task/task.hpp"
+#include "FreeRTOS.h"
+#include "semphr.h"
 
 /// === Namespaces
 
 namespace femtin
 {
-namespace demo
+namespace os
 {
 
 /// === Class Declarations
 
-class Task1 : public femtin::Task
+class Mutex
 {
 public:
-  /// --- Public Constants
+  /// === Public Declarations
 
-  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
-  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 2);
+  Mutex();
 
-  /// --- Public Declarations
+  bool lock(unit::millisecond timeout_ms);
+  bool unlock();
 
-  Task1();
-  virtual void run();
+private:
+  /// --- Private Attributes
+
+  SemaphoreHandle_t handle_;
 };
 
-/// === Class Declarations
+/// === Inlines Declarations
 
-class Task2 : public femtin::Task
-{
-public:
-  /// --- Public Constants
-
-  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
-  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 1);
-
-  /// --- Public Declarations
-
-  Task2();
-  virtual void run();
-};
+/// ------------------------------------------------------------------------------------------------
 }
 }
-
 #endif
 /// === END OF FILE

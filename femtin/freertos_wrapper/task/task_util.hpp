@@ -15,60 +15,36 @@
 
 /// ================================================================================================
 ///
-/// \file	task_test.hpp
-/// \brief
-/// \date	11/10/2016
+/// \file	task_util.hpp
+/// \brief	Cpp wrapper around FreeRTOS task
+/// \date	12/12/2016
 /// \author	nboutin
 ///
 /// ================================================================================================
-
-#ifndef TASK_TEST_HPP
-#define TASK_TEST_HPP
+#ifndef FEMTIN_TASK_UTIL_HPP
+#define FEMTIN_TASK_UTIL_HPP
 
 /// === Includes
 
-#include "freertos_wrapper/task/task.hpp"
+#include <vector>
+
+#include "FreeRTOS.h"
+#include "task.h"
 
 /// === Namespaces
 
 namespace femtin
 {
-namespace demo
-{
-
 /// === Class Declarations
 
-class Task1 : public femtin::Task
+class Task_Util
 {
 public:
-  /// --- Public Constants
+  /// --- Public Functions
 
-  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
-  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 2);
-
-  /// --- Public Declarations
-
-  Task1();
-  virtual void run();
-};
-
-/// === Class Declarations
-
-class Task2 : public femtin::Task
-{
-public:
-  /// --- Public Constants
-
-  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
-  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 1);
-
-  /// --- Public Declarations
-
-  Task2();
-  virtual void run();
+  /// TODO Redesign
+  static void list_custom(/*char* _write_buffer, std::vector<TaskStatus_t>& _working_buffer*/);
 };
 }
-}
-
 #endif
 /// === END OF FILE
