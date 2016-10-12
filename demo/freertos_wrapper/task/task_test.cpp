@@ -29,6 +29,8 @@ using namespace femtin::demo;
 
 #include "bsp/led/led.hpp"
 
+#include "freertos_wrapper/task/joinable_task.hpp"
+
 /// === Namespaces
 
 using namespace board::led;
@@ -63,6 +65,35 @@ void Task2::run()
   {
     LED_Orange.toggle();
     this_task::sleep_for(std::chrono::milliseconds(500));
+  }
+}
+
+/// ------------------------------------------------------------------------------------------------
+
+Task3::Task3() : Task("Task3", STACK_SIZE, STACK_PRIORITY) {}
+
+/// ------------------------------------------------------------------------------------------------
+
+void f(void* _arg);
+void f(void* _arg)
+{
+  (void*)_arg;
+  for (;;)
+  {
+    LED_Red.toggle();
+    femtin::this_task::sleep_for(std::chrono::milliseconds(250));
+  }
+}
+
+/// ------------------------------------------------------------------------------------------------
+
+void Task3::run()
+{
+  Joinable_Task jtask1("jtask1", configMINIMAL_STACK_SIZE, tskIDLE_PRIORITY + 4, f, nullptr);
+
+  for (;;)
+  {
+    this_task::sleep_for(std::chrono::seconds(10));
   }
 }
 

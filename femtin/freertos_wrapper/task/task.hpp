@@ -121,9 +121,6 @@ inline uint16_t Task::stack_high_water_mark() const { return uxTaskGetStackHighW
 
 namespace task
 {
-
-using ticks = std::chrono::duration<uint32_t, std::ratio<1, configTICK_RATE_HZ> >;
-
 inline Task::id get_idle_task_id() { return xTaskGetIdleTaskHandle(); }
 
 inline uint32_t number_of_tasks() { return uxTaskGetNumberOfTasks(); }
@@ -153,15 +150,12 @@ namespace this_task
 {
 inline Task::id get_id() { return xTaskGetCurrentTaskHandle(); }
 
-inline void sleep_for(const std::chrono::milliseconds& _time)
-{
-  vTaskDelay(task::ticks(_time).count());
-}
+inline void sleep_for(const std::chrono::milliseconds& _time) { vTaskDelay(ticks(_time).count()); }
 
 inline void sleep_until(const std::chrono::milliseconds& _time)
 {
   uint32_t now = task::tick_count();
-  vTaskDelayUntil(&now, task::ticks(_time).count());
+  vTaskDelayUntil(&now, ticks(_time).count());
 }
 
 } // this_task

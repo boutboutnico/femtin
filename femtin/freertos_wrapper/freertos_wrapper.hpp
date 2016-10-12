@@ -24,24 +24,24 @@
 #ifndef FEMTIN_FREERTOS_WRAPPER_HPP_
 #define FEMTIN_FREERTOS_WRAPPER_HPP_
 
-/// === Includes ===================================================================================
+/// === Includes
+
+#include <chrono>
+
+#include "stm32f4xx_hal.h" /// TODO define according to used platform
 
 #include "FreeRTOS.h"
 
-//#ifdef STM32F407xx	/// TODO use correct define
-#include "stm32f4xx_hal.h"
-//#endif
-
-/// === Namespaces =================================================================================
+/// === Namespaces
 
 namespace femtin
-{
-namespace task
 {
 
 /// --- Public Constants
 
-const TickType_t TIMEOUT_MAX = portMAX_DELAY;
+using ticks = std::chrono::duration<uint32_t, std::ratio<1, configTICK_RATE_HZ> >;
+
+const uint32_t TIMEOUT_MAX = portMAX_DELAY;
 
 /// --- Public Functions
 
@@ -56,6 +56,5 @@ inline bool is_in_ISR()
 
 /// ------------------------------------------------------------------------------------------------
 }
-}
 #endif
-/// === END OF FILE ================================================================================
+/// === END OF FILE

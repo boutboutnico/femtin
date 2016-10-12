@@ -44,7 +44,7 @@ public:
   /// --- Public Constants
 
   static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
-  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 2);
+  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 1);
 
   /// --- Public Declarations
 
@@ -60,11 +60,27 @@ public:
   /// --- Public Constants
 
   static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
-  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 1);
+  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 2);
 
   /// --- Public Declarations
 
   Task2();
+  virtual void run();
+};
+
+/// === Class Declarations
+
+class Task3 : public femtin::Task
+{
+public:
+  /// --- Public Constants
+
+  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
+  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 3);
+
+  /// --- Public Declarations
+
+  Task3();
   virtual void run();
 };
 }

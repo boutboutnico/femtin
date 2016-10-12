@@ -7,10 +7,12 @@
 //============================================================================
 
 //#include <iostream>
-//using namespace std;
+// using namespace std;
 
-/// === Includes	================================================================================
+/// === Includes
+/// ================================================================================
 
+#include <mutex>
 #include <thread>
 
 #include "array/array_all_tests.hpp"
@@ -20,27 +22,29 @@
 #include "string/string_all_tests.hpp"
 #include "unit/unit_all_tests.hpp"
 
-///	===	Namespaces	================================================================================
+///	===	Namespaces
+///================================================================================
 
 using namespace femtin::test;
 
 int main()
 {
-//	cout << "=== Start Tests	===" << endl;
+  //	cout << "=== Start Tests	===" << endl;
 
-	array::array_all();
+  array::array_all();
 
-	buffer::buffer_all();
+  buffer::buffer_all();
 
-	mpl::mpl_all();
+  mpl::mpl_all();
 
-	ring_buffer::ring_buffer_all();
+  ring_buffer::ring_buffer_all();
 
-	femtin::test::string::string_all();
+  femtin::test::string::string_all();
 
-	unit::unit_all();
+  unit::unit_all();
 
-//	cout << "\n=== End Tests	===" << endl;
+  //	cout << "\n=== End Tests	===" << endl;
 }
 
-/// === END OF FILE	================================================================================
+/// === END OF FILE
+/// ================================================================================

@@ -26,7 +26,6 @@
 
 #include "bsp/led/led.hpp"
 
-#include "freertos_wrapper/task/joinable_task.hpp"
 #include "freertos_wrapper/task/task.hpp"
 
 #include "task_test.hpp"
@@ -47,17 +46,6 @@ using namespace board::led;
 
 /// ------------------------------------------------------------------------------------------------
 
-void run(void* _arg)
-{
-  for (;;)
-  {
-    LED_Red.toggle();
-    femtin::this_task::sleep_for(std::chrono::milliseconds(600));
-  }
-}
-
-/// ------------------------------------------------------------------------------------------------
-
 int main(int argc, char* argv[])
 {
   // At this stage the system clock should have already been configured
@@ -65,9 +53,7 @@ int main(int argc, char* argv[])
 
   static Task1 task1;
   static Task2 task2;
-
-  static femtin::os::Joinable_Task task3(
-    "Task3", configMINIMAL_STACK_SIZE, tskIDLE_PRIORITY + 3, run, nullptr);
+  static Task3 task3;
 
   vTaskStartScheduler(); // should never return
 }

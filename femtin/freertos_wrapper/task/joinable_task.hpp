@@ -35,8 +35,6 @@
 
 namespace femtin
 {
-namespace os
-{
 
 /// === Class Declarations
 
@@ -56,7 +54,7 @@ public:
                 uint16_t _priority,
                 pfunction_t _pfunction,
                 void* _arg)
-    : pfunction_(_pfunction), arg_(_arg), handle_(nullptr), stack_depth_(_stack_depth)
+    : handle_(nullptr), stack_depth_(_stack_depth), pfunction_(_pfunction), arg_(_arg)
   {
     /// TODO assert creation
     xTaskCreate(Joinable_Task::callback, _name, _stack_depth, this, _priority, &handle_);
@@ -83,14 +81,13 @@ private:
 
   /// --- Private Attributs
 
-  pfunction_t pfunction_;
-  arg_t arg_;
-
   handle_t handle_;
   const uint16_t stack_depth_;
+
+  pfunction_t pfunction_;
+  arg_t arg_;
 };
 /// === Inlines Definitions
-}
 }
 #endif
 /// === END OF FILE
