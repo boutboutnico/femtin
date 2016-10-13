@@ -26,12 +26,13 @@
 
 /// === Includes
 
-#include <freertos_wrapper/freertos_port.hpp>
+#include <assert.h>
 #include <chrono>
+
+#include <freertos_wrapper/freertos_port.hpp>
 
 #include "FreeRTOS.h"
 #include "task.h"
-
 
 /// === Namespaces
 
@@ -75,6 +76,13 @@ public:
   void suspend();
   void resume();
 
+  void notify(uint32_t _value, eNotifyAction _action_e = eSetBits) const;
+
+  bool wait(uint32_t& _notified_value,
+            const std::chrono::milliseconds& _time,
+            uint32_t _bits_to_clear_on_entry = 0x00,
+            uint32_t _bits_to_clear_on_exit  = std::numeric_limits<uint32_t>::max());
+
   /// --- Observers
   Task::id get_id() const;
   native_handle_t native_handle() const;
@@ -104,6 +112,40 @@ private:
 inline void Task::suspend() { vTaskSuspend(id_.handle_); }
 
 inline void Task::resume() { vTaskResume(id_.handle_); }
+
+inline void Task::notify(const uint32_t _value, const eNotifyAction _action_e) const
+{
+  auto r = false;
+  if (is_in_ISR() == false)
+  {
+    r = (xTaskNotify(id_.handle_, _value, _action_e)) == pdPASS ? true : false;
+  }
+  /// From interrupt context
+  else
+  {
+    auto higher_priority_task_woken = pdFALSE;
+    r = (xTaskNotifyFromISR(id_.handle_, _value, _action_e, &higher_priority_task_woken)) == pdPASS
+          ? true
+          : false;
+
+    portYIELD_FROM_ISR(higher_priority_task_woken);
+  }
+
+  assert(r);
+}
+
+inline bool Task::wait(uint32_t& _notified_value,
+                       const std::chrono::milliseconds& _time,
+                       uint32_t _bits_to_clear_on_entry,
+                       uint32_t _bits_to_clear_on_exit)
+{
+  return (xTaskNotifyWait(_bits_to_clear_on_entry,
+                          _bits_to_clear_on_exit,
+                          &_notified_value,
+                          ticks(_time).count()) == pdTRUE)
+           ? true
+           : false;
+}
 
 inline Task::id Task::get_id() const { return id_; }
 
