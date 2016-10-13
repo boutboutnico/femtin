@@ -31,7 +31,7 @@ void vApplicationTickHook(void);
 #endif
 
 #if (configCHECK_FOR_STACK_OVERFLOW > 0)
-void vApplicationStackOverflowHook(xTaskHandle pxTask, signed char *pcTaskName);
+void vApplicationStackOverflowHook(TaskHandle_t pxTask, signed char *pcTaskName);
 #endif
 
 #if (configUSE_MALLOC_FAILED_HOOK > 0)

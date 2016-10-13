@@ -24,14 +24,11 @@
 
 /// === Includes
 
-#include "bsp/led/led.hpp"
-
 #include "task_test.hpp"
 
 /// === Namespaces
 
 using namespace femtin::demo;
-using namespace board::led;
 
 /// === Public Definitions
 

@@ -153,7 +153,7 @@ inline Task::native_handle_t Task::native_handle() const { return id_.handle_; }
 
 inline eTaskState Task::state() const { return eTaskGetState(id_.handle_); }
 
-inline char* Task::name() const { return pcTaskGetTaskName(id_.handle_); }
+inline char* Task::name() const { return pcTaskGetName(id_.handle_); }
 
 inline uint16_t Task::stack_depth() const { return stack_depth_; }
 

@@ -1,28 +1,30 @@
 ///
 /// \file	freeRTOS_hook.cpp
-///	\brief	
+///	\brief
 ///	\date	3 mars 2015
 /// \author	nb_work
 ///
 
-/// === INCLUDES	================================================================================
+/// === INCLUDES
+/// ================================================================================
 
 #include "freeRTOS_hook.h"
 //#include "bsp/trace_uart/trace_uart.hpp"
 //#include "femtin/trace/trace.hpp"
 
-/// === NAMESPACES	================================================================================
+/// === NAMESPACES
+/// ================================================================================
 
-/// === PUBLIC DEFINITIONS	========================================================================
+/// === PUBLIC DEFINITIONS
+/// ========================================================================
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /// ----------------------------------------------------------------------------------------------
 
-#if ( configUSE_IDLE_HOOK > 0 )
+#if (configUSE_IDLE_HOOK > 0)
 /* vApplicationIdleHook() will only be called if configUSE_IDLE_HOOK is set
  to 1 in FreeRTOSConfig.h.  It will be called on each iteration of the idle
  task.  It is essential that code added to this hook function never attempts
@@ -32,15 +34,13 @@ extern "C"
  important that vApplicationIdleHook() is permitted to return to its calling
  function, because it is the responsibility of the idle task to clean up
  memory allocated by the kernel to any task that has since been deleted. */
-void vApplicationIdleHook(void)
-{
-}
+void vApplicationIdleHook(void) {}
 
 #endif
 
 /// ----------------------------------------------------------------------------------------------
 
-#if  (configUSE_TICK_HOOK > 0)
+#if (configUSE_TICK_HOOK > 0)
 /*The tick interrupt can optionally call an application defined hook (or callback) function - the
  tick hook. The tick hook provides a convenient place to implement timer functionality.
  The tick hook will only get called if configUSE_TICK_HOOK is set to 1 within FreeRTOSConfig.h.
@@ -49,9 +49,7 @@ void vApplicationIdleHook(void)
  vApplicationTickHook() executes from within an ISR so must be very short, not use much stack,
  and not call any API functions that don't end in "FromISR" or "FROM_ISR".
  */
-void vApplicationTickHook(void)
-{
-}
+void vApplicationTickHook(void) {}
 
 #endif
 
@@ -59,22 +57,22 @@ void vApplicationTickHook(void)
 
 #if (configCHECK_FOR_STACK_OVERFLOW > 0)
 
-void vApplicationStackOverflowHook(xTaskHandle pxTask, signed char *pcTaskName)
+void vApplicationStackOverflowHook(TaskHandle_t pxTask, signed char* pcTaskName)
 {
-	(void) pcTaskName;
-	(void) pxTask;
-	/* Run time stack overflow checking is performed if
-	 configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
-	 function is called if a stack overflow is detected. */
-//  taskDISABLE_INTERRUPTS ();
-//	trace_printf("[StackOverFlow] !!! %s !!!\n", pcTaskName);
-//	board::mcu::trace << "[StackOverFlow] !!! " << reinterpret_cast<char*>(pcTaskName) << " !!!"
-//						<< femtin::endl;
+  (void)pcTaskName;
+  (void)pxTask;
+  /* Run time stack overflow checking is performed if
+   configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
+   function is called if a stack overflow is detected. */
+  //  taskDISABLE_INTERRUPTS ();
+  //	trace_printf("[StackOverFlow] !!! %s !!!\n", pcTaskName);
+  //	board::mcu::trace << "[StackOverFlow] !!! " << reinterpret_cast<char*>(pcTaskName) << " !!!"
+  //						<< femtin::endl;
 
-//	TRACE_F("StackOverFlow", "!!! %s !!!\n", reinterpret_cast<char*>(pcTaskName));
+  //	TRACE_F("StackOverFlow", "!!! %s !!!\n", reinterpret_cast<char*>(pcTaskName));
 
-	for (;;)
-		;
+  for (;;)
+    ;
 }
 
 #endif
@@ -95,11 +93,11 @@ void vApplicationStackOverflowHook(xTaskHandle pxTask, signed char *pcTaskName)
  provide information on how the remaining heap might be fragmented). */
 void vApplicationMallocFailedHook(void)
 {
-//  taskDISABLE_INTERRUPTS ();
-//	board::mcu::trace << "[MallocFailed] !!!" << femtin::endl;
-//	TRACE_F("MallocFailed", "!!! Error !!!\n");
-	for (;;)
-		;
+  //  taskDISABLE_INTERRUPTS ();
+  //	board::mcu::trace << "[MallocFailed] !!!" << femtin::endl;
+  //	TRACE_F("MallocFailed", "!!! Error !!!\n");
+  for (;;)
+    ;
 }
 
 #endif
