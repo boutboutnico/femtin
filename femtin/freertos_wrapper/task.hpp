@@ -26,7 +26,7 @@
 
 /// === Includes
 
-#include <assert.h>
+#include <cassert>
 #include <chrono>
 
 #include <freertos_wrapper/freertos_port.hpp>

@@ -26,7 +26,7 @@
 
 /// === Includes
 
-#include <assert.h>
+#include <cassert>
 
 #include "FreeRTOS.h"
 #include "semphr.h"

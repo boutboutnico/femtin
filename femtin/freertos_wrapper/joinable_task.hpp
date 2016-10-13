@@ -26,7 +26,7 @@
 
 /// === Includes
 
-#include <assert.h>
+#include <cassert>
 #include <freertos_wrapper/freertos_port.hpp>
 
 #include "FreeRTOS.h"
