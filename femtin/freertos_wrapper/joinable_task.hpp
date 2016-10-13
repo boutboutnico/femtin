@@ -29,7 +29,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-#include "../freertos_wrapper.hpp"
+#include "freertos_wrapper.hpp"
 
 /// === Namespaces
 

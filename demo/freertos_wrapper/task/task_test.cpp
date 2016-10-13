@@ -29,7 +29,7 @@ using namespace femtin::demo;
 
 #include "bsp/led/led.hpp"
 
-#include "freertos_wrapper/task/joinable_task.hpp"
+#include "freertos_wrapper/joinable_task.hpp"
 
 /// === Namespaces
 

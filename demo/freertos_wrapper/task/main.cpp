@@ -26,8 +26,6 @@
 
 #include "bsp/led/led.hpp"
 
-#include "freertos_wrapper/task/task.hpp"
-
 #include "task_test.hpp"
 
 /// === Namespaces

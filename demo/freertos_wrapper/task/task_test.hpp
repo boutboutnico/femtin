@@ -27,7 +27,7 @@
 
 /// === Includes
 
-#include "freertos_wrapper/task/task.hpp"
+#include "freertos_wrapper/task.hpp"
 
 /// === Namespaces
 

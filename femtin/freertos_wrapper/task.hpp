@@ -31,7 +31,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-#include "../freertos_wrapper.hpp" /// is_in_ISR use
+#include "freertos_wrapper.hpp"
 
 /// === Namespaces
 
