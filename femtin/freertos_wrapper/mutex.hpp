@@ -47,6 +47,7 @@ public:
 
   /// TODO assert creation
   Mutex() { handle_ = xSemaphoreCreateMutex(); }
+  ~Mutex() { vSemaphoreDelete(handle_); }
 
   Mutex(const Mutex&) = delete;
   Mutex& operator=(const Mutex&) = delete;
@@ -81,10 +82,7 @@ inline void Mutex::lock()
     ;
 }
 
-inline bool Mutex::try_lock()
-{
-  return (xSemaphoreTake(handle_, TIMEOUT_MAX) == pdTRUE) ? true : false;
-}
+inline bool Mutex::try_lock() { return (xSemaphoreTake(handle_, 0) == pdTRUE) ? true : false; }
 
 inline void Mutex::unlock() { xSemaphoreGive(handle_); }
 

@@ -26,10 +26,14 @@
 
 /// === Includes
 
+#include <assert.h>
+#include <freertos_wrapper/freertos_port.hpp>
+
 #include "FreeRTOS.h"
 #include "task.h"
 
-#include "freertos_wrapper.hpp"
+#include "semaphore.hpp"
+#include "task.hpp"
 
 /// === Namespaces
 
@@ -38,7 +42,7 @@ namespace femtin
 
 /// === Class Declarations
 
-class Joinable_Task
+class Joinable_Task /// TODO Move with task.hpp
 {
 public:
   /// --- Public Types
@@ -56,8 +60,8 @@ public:
                 void* _arg)
     : handle_(nullptr), stack_depth_(_stack_depth), pfunction_(_pfunction), arg_(_arg)
   {
-    /// TODO assert creation
     xTaskCreate(Joinable_Task::callback, _name, _stack_depth, this, _priority, &handle_);
+    assert(handle_);
   }
 
   ~Joinable_Task() { vTaskDelete(handle_); }
@@ -68,6 +72,7 @@ public:
   void join()
   {
     /// TODO assert deadlock against task waiting for itself
+    semaphore_.take();
   }
 
 private:
@@ -77,6 +82,8 @@ private:
   {
     Joinable_Task* task = static_cast<Joinable_Task*>(_arg);
     task->pfunction_(task->arg_);
+    task->semaphore_.give();
+    vTaskDelete(task->handle_);
   }
 
   /// --- Private Attributs
@@ -86,6 +93,7 @@ private:
 
   pfunction_t pfunction_;
   arg_t arg_;
+  Semaphore semaphore_;
 };
 /// === Inlines Definitions
 }
