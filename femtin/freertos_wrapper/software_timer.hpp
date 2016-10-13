@@ -48,6 +48,7 @@ public:
 
   /// --- Public Declarations
 
+  /// TODO use gsl for zstring
   Software_Timer(char const* const _name,
                  const std::chrono::milliseconds& _time,
                  bool _auto_reload,
@@ -55,6 +56,11 @@ public:
   {
     handle_ = xTimerCreate(_name, ticks(_time).count(), _auto_reload, this, _callback);
     assert(handle_);
+  }
+  ~Software_Timer()
+  {
+    auto r = xTimerDelete(handle_, 0);
+    assert(r == pdPASS);
   }
 
   /// --- Operations

@@ -53,6 +53,7 @@ public:
     handle_ = xQueueCreate(_n_msg, _msg_size);
     assert(handle_);
   }
+  ~Queue() { vQueueDelete(handle_); };
 
   /// --- Element Access
 
