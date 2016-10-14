@@ -44,7 +44,7 @@ public:
   /// --- Public Types
 
   typedef QueueSetHandle_t native_handle_t;
-  typedef QueueSetMemberHandle_t member_handle_t;
+  typedef QueueSetMemberHandle_t member_handle_t; /// TODO Use same type as Queue::handle_t
 
   /// --- Public Functions
 
