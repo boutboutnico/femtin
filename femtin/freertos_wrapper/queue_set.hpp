@@ -56,8 +56,8 @@ public:
 
   /// --- Operations
 
-  bool add(member_handle_t _member);
-  bool remove(member_handle_t _member);
+  void add(member_handle_t _member);
+  void remove(member_handle_t _member);
   member_handle_t select(const std::chrono::milliseconds& _time) const;
 
 private:
@@ -66,11 +66,18 @@ private:
   native_handle_t handle_;
 };
 
-inline bool Queue_Set::add(member_handle_t _member) { return xQueueAddToSet(_member, handle_); }
+/// === Inlines Definitions
 
-inline bool Queue_Set::remove(member_handle_t _member)
+inline void Queue_Set::add(member_handle_t _member)
 {
-  return xQueueRemoveFromSet(_member, handle_);
+  auto r = xQueueAddToSet(_member, handle_);
+  assert(r == pdPASS);
+}
+
+inline void Queue_Set::remove(member_handle_t _member)
+{
+  auto r = xQueueRemoveFromSet(_member, handle_);
+  assert(r == pdPASS);
 }
 
 Queue_Set::member_handle_t Queue_Set::select(const std::chrono::milliseconds& _time) const
