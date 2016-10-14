@@ -24,6 +24,8 @@
 
 /// === Includes
 
+#include "freertos_wrapper/task.hpp"
+
 #include "task_test.hpp"
 
 /// === Namespaces
@@ -50,7 +52,7 @@ int main(int argc, char* argv[])
   static Task2 task2;
   static Task3 task3;
 
-  vTaskStartScheduler(); // should never return
+  femtin::scheduler::start(); // should never return
 }
 
 /// ------------------------------------------------------------------------------------------------
