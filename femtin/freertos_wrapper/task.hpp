@@ -48,6 +48,18 @@ public:
 
   typedef TaskHandle_t native_handle_t;
 
+  /// --- Inner Enum Definitions
+
+  enum class state_e : uint8_t
+  {
+    Ready = 0,
+    Running,
+    Blocked,
+    Suspended,
+    Deleted,
+    Invalid,
+  };
+
   /// --- Inner Class Definition
 
   class id
@@ -70,11 +82,18 @@ public:
     xTaskCreate(Task::callback, _name, _stack_depth, this, _priority, &id_.handle_);
   }
 
+  ~Task() { vTaskDelete(id_.handle_); }
+
   virtual void run() = 0;
 
   /// --- Operations
+
+  uint32_t get_priority() const;
+  void set_priority(uint32_t _priority);
+
   void suspend();
   void resume();
+  // abort_delay
 
   void notify(uint32_t _value, eNotifyAction _action_e = eSetBits) const;
 
@@ -84,13 +103,20 @@ public:
             uint32_t _bits_to_clear_on_exit  = std::numeric_limits<uint32_t>::max());
 
   /// --- Observers
+
   Task::id get_id() const;
   native_handle_t native_handle() const;
 
-  eTaskState state() const;
-  char* name() const;
+  state_e state() const;
+  const char* name() const;
   uint16_t stack_depth() const;
-  uint16_t stack_high_water_mark() const;
+  uint32_t stack_high_water_mark() const;
+
+  /// --- Debug Purpose
+
+  // uxTaskGetSystemState;
+  // vTaskGetInfo;
+  // xTaskGetHandle;
 
 private:
   /// --- Private Functions
@@ -101,6 +127,8 @@ private:
     (static_cast<Task*>(_arg))->run();
   }
 
+  state_e convert(const eTaskState _state) const;
+
   /// --- Private_attributs
 
   id id_;
@@ -109,8 +137,16 @@ private:
 
 /// === Inline Definitions
 
+inline uint32_t Task::get_priority() const { return uxTaskPriorityGet(id_.handle_); }
+
+inline void Task::set_priority(const uint32_t _priority)
+{
+  vTaskPrioritySet(id_.handle_, _priority);
+}
+
 inline void Task::suspend() { vTaskSuspend(id_.handle_); }
 
+/// xTaskResumeFromISR not very useful
 inline void Task::resume() { vTaskResume(id_.handle_); }
 
 inline void Task::notify(const uint32_t _value, const eNotifyAction _action_e) const
@@ -151,18 +187,76 @@ inline Task::id Task::get_id() const { return id_; }
 
 inline Task::native_handle_t Task::native_handle() const { return id_.handle_; }
 
-inline eTaskState Task::state() const { return eTaskGetState(id_.handle_); }
+inline Task::state_e Task::state() const { return convert(eTaskGetState(id_.handle_)); }
 
-inline char* Task::name() const { return pcTaskGetName(id_.handle_); }
+inline const char* Task::name() const { return pcTaskGetName(id_.handle_); }
 
 inline uint16_t Task::stack_depth() const { return stack_depth_; }
 
 #if (INCLUDE_uxTaskGetStackHighWaterMark == 1)
-inline uint16_t Task::stack_high_water_mark() const { return uxTaskGetStackHighWaterMark(handle_); }
+inline uint32_t Task::stack_high_water_mark() const
+{
+  return uxTaskGetStackHighWaterMark(id_.handle_);
+}
 #endif
 
-namespace task
+inline Task::state_e Task::convert(const eTaskState _state) const
 {
+  switch (_state)
+  {
+  case eTaskState::eReady:
+    return state_e::Ready;
+  case eTaskState::eRunning:
+    return state_e::Running;
+  case eTaskState::eBlocked:
+    return state_e::Blocked;
+  case eTaskState::eSuspended:
+    return state_e::Suspended;
+  case eTaskState::eDeleted:
+    return state_e::Deleted;
+  default:
+    return state_e::Invalid;
+  }
+}
+
+namespace scheduler
+{
+
+enum class state_e : uint8_t
+{
+  Not_Started = 0,
+  Running,
+  Suspended,
+};
+
+namespace details
+{
+
+inline state_e convert(uint32_t _state)
+{
+  switch (_state)
+  {
+  case taskSCHEDULER_NOT_STARTED:
+    return state_e::Not_Started;
+  case taskSCHEDULER_RUNNING:
+    return state_e::Running;
+  case taskSCHEDULER_SUSPENDED:
+    return state_e::Suspended;
+  default:
+    assert(false);
+  }
+  return state_e::Not_Started;
+}
+} // details
+
+inline void start() { vTaskStartScheduler(); }
+
+// vTaskEndScheduler : This has only been implemented for the x86 Real Mode PC port.
+
+inline void suspend_all() { vTaskSuspendAll(); }
+
+inline void resume_all() { xTaskResumeAll(); }
+
 inline Task::id get_idle_task_id() { return xTaskGetIdleTaskHandle(); }
 
 inline uint32_t number_of_tasks() { return uxTaskGetNumberOfTasks(); }
@@ -177,30 +271,29 @@ inline void runtime_stats(char* _write_buffer) { vTaskGetRunTimeStats(_write_buf
 
 inline uint32_t tick_count()
 {
-  if (is_in_ISR() == true)
-  {
-    return xTaskGetTickCountFromISR();
-  }
-  else
-  {
-    return xTaskGetTickCount();
-  }
+  return (is_in_ISR()) ? xTaskGetTickCountFromISR() : xTaskGetTickCount();
 }
-} // task
+
+inline state_e state() { return details::convert(xTaskGetSchedulerState()); }
+
+} // scheduler
 
 namespace this_task
 {
 inline Task::id get_id() { return xTaskGetCurrentTaskHandle(); }
 
+inline void yeld() { taskYIELD(); }
+
 inline void sleep_for(const std::chrono::milliseconds& _time) { vTaskDelay(ticks(_time).count()); }
 
 inline void sleep_until(const std::chrono::milliseconds& _time)
 {
-  uint32_t now = task::tick_count();
+  uint32_t now = scheduler::tick_count();
   vTaskDelayUntil(&now, ticks(_time).count());
 }
 
 } // this_task
+
 } // femtin
 
 #endif
