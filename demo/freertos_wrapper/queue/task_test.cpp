@@ -39,7 +39,7 @@ using namespace board::led;
 
 static const uint16_t VAL16 = 0x1234;
 static const uint32_t VAL32 = 0x56789ABC;
-femtin::Queue queue(2, sizeof(uint32_t));
+femtin::Queue<uint32_t> queue(2);
 
 struct msg_t
 {
@@ -51,7 +51,7 @@ struct msg_t
 
 static const msg_t MSG{ VAL16, VAL32 };
 
-femtin::Queue queue_msg(2, sizeof(msg_t));
+femtin::Queue<msg_t> queue_msg(2);
 
 /// === Public Definitions
 
@@ -68,12 +68,12 @@ void Task1::run()
   {
     LED_Green.on();
     this_task::sleep_for(std::chrono::seconds(1));
-    queue.send_to_back(&write);
+    queue.send_to_back(write);
     this_task::sleep_for(std::chrono::seconds(1));
 
     LED_Blue.on();
     this_task::sleep_for(std::chrono::seconds(1));
-    queue_msg.send_to_back(&msg);
+    queue_msg.send_to_back(msg);
     this_task::sleep_for(std::chrono::seconds(1));
   }
 }
@@ -91,7 +91,7 @@ void Task2::run()
 
   for (;;)
   {
-    if (queue.receive(&read, std::chrono::seconds(5)) == true)
+    if (queue.receive(read, std::chrono::seconds(5)) == true)
     {
       if (read == VAL32)
       {
@@ -107,7 +107,7 @@ void Task2::run()
       this_task::sleep_for(std::chrono::milliseconds(500));
     }
 
-    if (queue_msg.receive(&msg_read, std::chrono::seconds(5)) == true)
+    if (queue_msg.receive(msg_read, std::chrono::seconds(5)) == true)
     {
       if (msg_read == MSG)
       {
