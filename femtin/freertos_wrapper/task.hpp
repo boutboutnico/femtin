@@ -95,12 +95,17 @@ public:
   void resume();
   // abort_delay
 
+  // xTaskNotifyStateClear
   void notify(uint32_t _value, eNotifyAction _action_e = eSetBits) const;
 
   bool wait(uint32_t& _notified_value,
             const std::chrono::milliseconds& _time,
             uint32_t _bits_to_clear_on_entry = 0x00,
             uint32_t _bits_to_clear_on_exit  = std::numeric_limits<uint32_t>::max());
+
+  // light weight and faster binary or counting semaphore
+  // xTaskNotifyGive
+  // ulTaskNotifyTake
 
   /// --- Observers
 
