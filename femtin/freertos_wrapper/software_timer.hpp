@@ -44,12 +44,13 @@ public:
   /// --- Public Typedef
 
   typedef TimerHandle_t native_handle_t;
+  /// TODO Change to have user_param by using vTimerSetTimerId
   typedef void (*callback_t)(native_handle_t _htimer);
 
   /// --- Public Declarations
 
   /// TODO use gsl for zstring
-  Software_Timer(char const* const _name,
+  Software_Timer(const char* _name,
                  const std::chrono::milliseconds& _time,
                  bool _auto_reload,
                  callback_t _callback)
@@ -65,14 +66,18 @@ public:
 
   /// --- Operations
 
-  bool start();
-  bool stop();
-  bool change(const std::chrono::milliseconds& _time);
-  bool reset();
+  void start();
+  void stop();
+  void change(const std::chrono::milliseconds& _time);
+  void reset();
 
   /// --- Observers
 
+  native_handle_t native_handle() const;
+  const char* name() const;
   bool is_active() const;
+  std::chrono::milliseconds get_period() const;
+  std::chrono::milliseconds remaining() const;
 
 private:
   /// --- Private Declarations
@@ -81,18 +86,50 @@ private:
 };
 /// === Inlines Definitions
 
-inline bool Software_Timer::start() { return xTimerStart(handle_, 0); }
-
-inline bool Software_Timer::stop() { return xTimerStop(handle_, 0); }
-
-inline bool Software_Timer::change(const std::chrono::milliseconds& _time)
+inline void Software_Timer::start()
 {
-  return xTimerChangePeriod(handle_, ticks(_time).count(), 0);
+  auto r = xTimerStart(handle_, 0);
+  assert(r == pdPASS);
 }
 
-inline bool Software_Timer::reset() { return xTimerReset(handle_, 0); }
+inline void Software_Timer::stop()
+{
+  auto r = xTimerStop(handle_, 0);
+  assert(r == pdPASS);
+}
+
+inline void Software_Timer::change(const std::chrono::milliseconds& _time)
+{
+  auto r = xTimerChangePeriod(handle_, ticks(_time).count(), 0);
+  assert(r == pdPASS);
+}
+
+inline void Software_Timer::reset()
+{
+  auto r = xTimerReset(handle_, 0);
+  assert(r == pdPASS);
+}
+
+inline Software_Timer::native_handle_t Software_Timer::native_handle() const { return handle_; }
+
+inline const char* Software_Timer::name() const { return pcTimerGetName(handle_); }
 
 inline bool Software_Timer::is_active() const { return xTimerIsTimerActive(handle_); }
+
+inline std::chrono::milliseconds Software_Timer::get_period() const
+{
+  return ticks(xTimerGetPeriod(handle_));
+}
+
+inline std::chrono::milliseconds Software_Timer::remaining() const
+{
+  return ticks(xTimerGetExpiryTime(handle_) - scheduler::tick_count());
+}
+
+namespace software_timer
+{
+inline Task::id get_timer_daemon_task_id() { return xTimerGetTimerDaemonTaskHandle(); }
+}
 }
 #endif
 ///	===	END OF FILE
