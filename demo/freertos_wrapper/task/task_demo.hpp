@@ -15,7 +15,7 @@
 
 /// ================================================================================================
 ///
-/// \file	task_test.hpp
+/// \file	task_demo.hpp
 /// \brief
 /// \date	11/10/2016
 /// \author	nboutin
@@ -65,6 +65,22 @@ public:
   /// --- Public Declarations
 
   Task2();
+  virtual void run();
+};
+
+/// === Class Declarations
+
+class Task3 : public femtin::Task
+{
+public:
+  /// --- Public Constants
+
+  static const uint16_t STACK_SIZE     = configMINIMAL_STACK_SIZE;
+  static const uint16_t STACK_PRIORITY = (tskIDLE_PRIORITY + 3);
+
+  /// --- Public Declarations
+
+  Task3();
   virtual void run();
 };
 }
