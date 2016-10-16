@@ -60,7 +60,7 @@ private:
   /// --- Private Attributs
 
   Software_Timer timer1_;
-  Software_Timer timer2_;
+//  Software_Timer timer2_;
 };
 
 /// === Class Declarations

@@ -40,7 +40,7 @@ using namespace board::led;
 Task1::Task1()
   : Task("Task1", STACK_SIZE, STACK_PRIORITY)
   , timer1_("Timer1", std::chrono::seconds(1), true, Task1::callback)
-  , timer2_("Timer2", std::chrono::milliseconds(500), true, Task1::callback)
+//  , timer2_("Timer2", std::chrono::milliseconds(500), true, Task1::callback)
 {
 }
 
@@ -49,7 +49,7 @@ Task1::Task1()
 void Task1::run()
 {
   timer1_.start();
-  timer2_.start();
+//  timer2_.start();
 
   for (;;)
   {
