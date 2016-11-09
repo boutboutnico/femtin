@@ -32,4 +32,4 @@ git remote -v
 git fetch origin
 
 - Update to remote repository
-git fetch origin master
+git push origin master
