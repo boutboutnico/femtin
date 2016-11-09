@@ -20,3 +20,16 @@ git checkout branch_name	// branch must exist
 - Merge modification
 // From branch to merge in
 [master]> git merge hotfix
+
+#
+# Remote repository
+# 
+
+- See remote reference
+git remote -v
+
+- Update from remote repository
+git fetch origin
+
+- Update to remote repository
+git fetch origin master
