@@ -13,3 +13,10 @@ git commit -m "message" -m "message"
 - See modification
 git status
 git status -s  // short result
+
+- Switch branch
+git checkout branch_name	// branch must exist
+
+- Merge modification
+// From branch to merge in
+[master]> git merge hotfix
