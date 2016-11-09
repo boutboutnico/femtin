@@ -1,0 +1,6 @@
+- Clone distant repository
+git clone https://github.com/user/repo [new_name]
+
+- Create new branch
+git checkout -b branch_name
+
