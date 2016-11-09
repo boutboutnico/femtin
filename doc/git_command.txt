@@ -36,3 +36,15 @@ git fetch origin
 
 - Update to remote repository
 git push origin master
+
+#
+# Submodule
+#
+- Add submodule
+git submodule add https://github.com/user/repo
+
+- Update submodule after clone
+git submodule init
+git submodule update
+
+
