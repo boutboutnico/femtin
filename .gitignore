@@ -13,6 +13,7 @@ tmp/
 local.properties
 .classpath
 .loadpath
+language.settings.xml
 
 # External tool builders
 .externalToolBuilders/
